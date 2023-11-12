@@ -14,5 +14,6 @@ data class Post(
     @GeneratedValue
     val id: PostId,
     val title: String,
-    val content: String
+    val content: String,
+    val author: String,
 )

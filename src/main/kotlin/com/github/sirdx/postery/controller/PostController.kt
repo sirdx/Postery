@@ -5,13 +5,7 @@ import com.github.sirdx.postery.model.PostId
 import com.github.sirdx.postery.repository.PostRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.net.URI
 
 @RestController
@@ -22,11 +16,13 @@ class PostController(
 
     @GetMapping
     fun getPosts() =
-        postRepository.findAll()
+        postRepository.findAll().toList()
 
     @GetMapping("/{id}")
-    fun getPost(@PathVariable id: PostId) =
-        postRepository.findByIdOrNull(id)
+    fun getPost(@PathVariable id: PostId): ResponseEntity<Post> {
+        val post = postRepository.findByIdOrNull(id) ?: return ResponseEntity.notFound().build()
+        return ResponseEntity.ok(post)
+    }
 
     @PostMapping
     fun createPost(@RequestBody post: Post): ResponseEntity<Post> {
@@ -37,9 +33,26 @@ class PostController(
         ).body(savedPost)
     }
 
+    @PutMapping("/{id}")
+    fun updatePost(@PathVariable id: PostId, @RequestBody post: Post): ResponseEntity<Post> {
+        val currentPost = postRepository.findByIdOrNull(id) ?: return ResponseEntity.notFound().build()
+        val updatedPost = currentPost.copy(
+            title = currentPost.title,
+            content = currentPost.content,
+            author = currentPost.author
+        )
+
+        postRepository.save(updatedPost)
+        return ResponseEntity.ok(updatedPost)
+    }
+
     @DeleteMapping("/{id}")
     fun deletePost(@PathVariable id: PostId): ResponseEntity<Unit> {
+        if (!postRepository.existsById(id)) {
+            return ResponseEntity.notFound().build()
+        }
+
         postRepository.deleteById(id)
-        return ResponseEntity.ok().build()
+        return ResponseEntity.noContent().build()
     }
 }
