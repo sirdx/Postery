@@ -11,11 +11,16 @@ export default function PostsPanel(props) {
         <div className='header-bar'></div>
         <h2>{t(category)}</h2>
       </div>
-      <ul>
-        {posts.map(post =>
-          <PostPreview href={post.href} title={post.title} content={post.content} />  
-        )}
-      </ul>
+      {posts.length > 0 && 
+        <ul>
+          {posts.map(post =>
+            <PostPreview href={post.href} title={post.title} content={post.content} />  
+          )}
+        </ul>
+      }
+      {posts.length === 0 && 
+        <p>{t('home_no_posts')}</p>
+      }
     </article>
   );
 }

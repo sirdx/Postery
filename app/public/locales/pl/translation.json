@@ -1,4 +1,10 @@
 {
   "nav_home": "Strona główna",
-  "nav_posts": "Posty"
+  "nav_posts": "Posty",
+
+  "home_title": "Strona główna",
+  "home_users": "Ostatnio aktywni",
+  "home_no_posts": "Brak postów do wyświetlenia.",
+  "home_newest_posts": "Najnowsze posty",
+  "home_best_posts": "Najlepsze posty"
 }

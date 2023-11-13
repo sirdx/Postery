@@ -5,6 +5,6 @@ export default function PostPreview(props) {
     <li>
       <a href={href}><h3>{title}</h3></a>
       <p>{content}</p>
-    </li>    
+    </li>
   );
 }
