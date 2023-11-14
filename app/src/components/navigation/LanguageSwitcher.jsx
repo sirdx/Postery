@@ -1,3 +1,4 @@
+import './LanguageSwitcher.scss';
 import { useTranslation } from 'react-i18next';
 import { supportedLanguages } from '../../config/i18n';
 

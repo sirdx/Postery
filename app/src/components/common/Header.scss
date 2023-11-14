@@ -1,0 +1,44 @@
+@import '../../styles/theme.scss';
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: large;
+
+  .header-bar {
+    width: 0.25em;
+    height: 2.5em;
+    margin-right: 10px;
+    transition: width ease-in-out .2s;
+
+    @include themify() {
+      background-color: themed('primary');
+    }
+
+    &.header-bar-2 {
+      width: 0.2em;
+      height: 2em;
+    }
+  }
+
+  &:hover .header-bar {
+    width: 1em !important;
+  }
+
+  h1 {
+    user-select: none;
+
+    @include themify() {
+      color: themed('on-background');
+    }
+  }
+
+  h2 {
+    user-select: none;
+
+    @include themify() {
+      color: themed('on-background-2');
+    }
+  }
+}

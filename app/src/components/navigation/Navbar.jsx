@@ -1,9 +1,11 @@
+import './Navbar.scss';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import LanguageSwitcher from './LanguageSwitcher';
+import DarkModeToggle from './DarkModeToggle';
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <header>
@@ -17,7 +19,10 @@ export default function Navbar() {
             <Link to='/posts'>{t('nav_posts')}</Link>
           </li>
         </ul>
-        <LanguageSwitcher />
+        <div className='navbar-options'>
+          <DarkModeToggle />
+          <LanguageSwitcher />
+        </div>
       </nav>
     </header>
   );

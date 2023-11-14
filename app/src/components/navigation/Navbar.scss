@@ -1,18 +1,4 @@
-body {
-  background-color: #3F3F3F;
-}
-
-.layout {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  .layout-outlet {
-    height: 100%;
-    padding: 20px;
-    overflow: hidden;
-  }
-}
+@import '../../styles/theme.scss';
 
 .navbar {
   padding: 20px;
@@ -20,19 +6,23 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #333333;
+  transition: background-color ease-in-out .2s;
+
+  @include themify() {
+    background-color: themed('container');
+  }
 
   .navbar-brand {
-    margin: 0;
-    color: #4FEF7F;
     font-size: x-large;
     font-weight: bold;
     user-select: none;
+
+    @include themify() {
+      color: themed('primary');
+    }
   }
 
   .navbar-menu {
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: row;
     list-style-type: none;
@@ -45,26 +35,30 @@ body {
       }
 
       a {
-        color: #EFEFEF;
         text-decoration: none;
         font-size: large;
         user-select: none;
         transition: color ease-in-out .3s;
       
+        @include themify() {
+          color: themed('on-background');
+        }
+
         &:hover {
           color: #D0D0D0 !important;
         }
 
         &:visited {
-          color: #EFEFEF;
+          @include themify() {
+            color: themed('on-background');
+          }
         }
       }
     }
   }
 
-  .navbar-language select {
-    padding: 5px;
-    border: 0;
-    border-radius: 5px;
+  .navbar-options {
+    display: flex;
+    flex-direction: row;
   }
 }

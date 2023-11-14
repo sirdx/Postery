@@ -1,0 +1,16 @@
+@import '../../styles/theme.scss';
+
+.posts-panel {
+  margin-bottom: 10px;
+  
+  p {
+    margin-top: 10px;
+    @include themify() {
+      color: themed('on-background-2');
+    }
+  }
+
+  ul {
+    list-style-type: none;
+  }
+}

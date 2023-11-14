@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import PostsPanel from '../components/home/PostsPanel';
-import '../styles/home.scss';
+import '../styles/PageHome.scss';
 import { useTranslation } from 'react-i18next';
 import { getRecentActiveUsers } from '../api/User';
+import Header from '../components/common/Header';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -31,10 +32,7 @@ export default function Home() {
         <h2>{t('home_users')}</h2>
       </aside>
       <main>
-        <div className='header'>
-          <div className='header-bar'></div>
-          <h1>{t('home_title')}</h1>
-        </div>
+        <Header title='home_title' />
         <div className='content'>
           <PostsPanel category='home_newest_posts' posts={newestPosts} />
           <PostsPanel category='home_best_posts' posts={bestPosts} />

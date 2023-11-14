@@ -1,0 +1,21 @@
+@import '../../styles/theme.scss';
+
+.posts-panel-item {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: #535353;
+  border-radius: 5px;
+
+  h3 {
+    color: #29D35C;
+  }
+
+  p {
+    display: -webkit-box;
+    color: #DFDFDF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+  }
+}

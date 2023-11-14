@@ -4,17 +4,20 @@ import Layout from './components/navigation/Layout';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Posts from './pages/Posts';
+import ThemeProvider from './components/common/ThemeProvider';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path='posts' element={<Posts />} />
-          <Route path='*' element={<NotFound />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path='posts' element={<Posts />} />
+            <Route path='*' element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>      
   );
 }

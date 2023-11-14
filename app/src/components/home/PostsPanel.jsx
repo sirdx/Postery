@@ -1,16 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import PostPreview from './PostPreview';
+import Header from '../common/Header';
+import './PostsPanel.scss';
 
-export default function PostsPanel(props) {
-  const { category, posts } = props;
+export default function PostsPanel({ category, posts }) {
   const { t } = useTranslation();
 
   return (
-    <article className='posts'>
-      <div className='header'>
-        <div className='header-bar'></div>
-        <h2>{t(category)}</h2>
-      </div>
+    <article className='posts-panel'>
+      <Header title={category} type={2} />
       {posts.length > 0 && 
         <ul>
           {posts.map(post =>
