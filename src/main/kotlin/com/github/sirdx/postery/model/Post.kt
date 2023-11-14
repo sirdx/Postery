@@ -1,9 +1,8 @@
 package com.github.sirdx.postery.model
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import com.github.sirdx.postery.util.toSlug
+import jakarta.persistence.*
+import java.time.LocalDateTime
 
 typealias PostId = Long
 
@@ -12,8 +11,12 @@ typealias PostId = Long
 data class Post(
     @Id
     @GeneratedValue
-    val id: PostId,
+    val id: PostId = 0L,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    val author: User,
     val title: String,
     val content: String,
-    val author: String
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+    val slug: String = title.toSlug()
 )
