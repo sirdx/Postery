@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import PostPreview from './PostPreview';
-import Header from '../common/Header';
+import Header from 'src/components/common/Header';
 import './PostsPanel.scss';
 
 export default function PostsPanel({ category, posts }) {

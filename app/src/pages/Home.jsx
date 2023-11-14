@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import PostsPanel from '../components/home/PostsPanel';
-import '../styles/PageHome.scss';
+import PostsPanel from 'src/components/home/PostsPanel';
+import 'src/styles/PageHome.scss';
 import { useTranslation } from 'react-i18next';
-import { getRecentActiveUsers } from '../api/User';
-import Header from '../components/common/Header';
+import { getRecentActiveUsers } from 'src/api/User';
+import Header from 'src/components/common/Header';
 
 export default function Home() {
   const { t } = useTranslation();

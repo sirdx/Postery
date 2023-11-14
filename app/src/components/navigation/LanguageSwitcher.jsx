@@ -1,6 +1,6 @@
 import './LanguageSwitcher.scss';
 import { useTranslation } from 'react-i18next';
-import { supportedLanguages } from '../../config/i18n';
+import { supportedLanguages } from 'src/config/i18n';
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();

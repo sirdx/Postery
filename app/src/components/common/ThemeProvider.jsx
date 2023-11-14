@@ -1,5 +1,5 @@
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import ThemeContext, { initialThemeState } from "../../contexts/ThemeContext";
+import { useLocalStorage } from 'src/hooks/useLocalStorage';
+import ThemeContext, { initialThemeState } from 'src/contexts/ThemeContext';
 
 export default function ThemeProvider({ children }) {
   const THEME_KEY = 'theme';

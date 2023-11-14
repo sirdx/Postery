@@ -5,6 +5,7 @@ export async function getPosts() {
     
     return data;
   } catch (error) {
-    return console.warn(error);
+    console.error(error);
+    return [];
   }
 }

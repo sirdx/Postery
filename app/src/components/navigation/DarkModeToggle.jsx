@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import './DarkModeToggle.scss';
-import ThemeContext from '../../contexts/ThemeContext';
+import ThemeContext from 'src/contexts/ThemeContext';
 
 export default function DarkModeToggle() {
   const { theme, setTheme } = useContext(ThemeContext);
