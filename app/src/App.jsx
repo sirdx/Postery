@@ -1,23 +1,29 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, createBrowserRouter, createRoutesFromElements, defer } from 'react-router-dom';
 import Layout from './components/navigation/Layout';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Posts from './pages/Posts';
-import ThemeProvider from './components/common/ThemeProvider';
+import AuthLayout from './components/layouts/AuthLayout';
 
-export default function App() {
-  return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path='posts' element={<Posts />} />
-            <Route path='*' element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>      
+const getUserData = () =>
+  new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(null);
+    }, 3000)
   );
-}
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route 
+      element={<AuthLayout />}
+      loader={() => defer({ userPromise: getUserData() })}
+    >
+      <Route path='/' element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path='posts' element={<Posts />} />
+        <Route path='*' element={<NotFound />} />
+      </Route>
+    </Route>
+  )
+);

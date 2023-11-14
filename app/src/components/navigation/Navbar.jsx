@@ -10,7 +10,9 @@ export default function Navbar() {
   return (
     <header>
       <nav className='navbar'>
-        <p className='navbar-brand'>Postery</p>
+        <span className='navbar-brand'>
+          <Link to='/'>Postery</Link>
+        </span>
         <ul className='navbar-menu'>
           <li>
             <Link to='/'>{t('nav_home')}</Link>

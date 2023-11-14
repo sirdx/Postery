@@ -12,9 +12,10 @@
     background-color: themed('container');
   }
 
-  .navbar-brand {
+  .navbar-brand a {
     font-size: x-large;
     font-weight: bold;
+    text-decoration: none;
     user-select: none;
 
     @include themify() {
