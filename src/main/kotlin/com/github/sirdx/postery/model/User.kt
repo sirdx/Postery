@@ -1,12 +1,18 @@
 package com.github.sirdx.postery.model
 
 import jakarta.persistence.*
-import java.time.LocalDateTime
+import java.time.Instant
 
 typealias UserId = Long
 
 @Entity
-@Table(name = "users")
+@Table(
+    name = "users",
+    uniqueConstraints = [
+        UniqueConstraint(columnNames = ["name"]),
+        UniqueConstraint(columnNames = ["email"])
+    ]
+)
 data class User(
     @Id
     @GeneratedValue
@@ -16,5 +22,5 @@ data class User(
     val password: String,
     @OneToMany(mappedBy = "author")
     val posts: List<Post> = listOf(),
-    val createdAt: LocalDateTime = LocalDateTime.now()
+    val createdAt: Instant = Instant.now()
 )

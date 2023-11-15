@@ -2,7 +2,7 @@ package com.github.sirdx.postery.model
 
 import com.github.sirdx.postery.util.toSlug
 import jakarta.persistence.*
-import java.time.LocalDateTime
+import java.time.Instant
 
 typealias PostId = Long
 
@@ -17,6 +17,6 @@ data class Post(
     val author: User,
     val title: String,
     val content: String,
-    val createdAt: LocalDateTime = LocalDateTime.now(),
+    val createdAt: Instant = Instant.now(),
     val slug: String = title.toSlug()
 )

@@ -1,30 +1,30 @@
-import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useMemo } from 'react';
 import { AuthContext } from 'src/hooks/useAuth';
 import { useLocalStorage } from 'src/hooks/useLocalStorage';
 
-export default function AuthProvider({ children, userData }) {
-  const [user, setUser] = useLocalStorage('user', userData);
-  const navigate = useNavigate();
+export default function AuthProvider({ children }) {
+  const [token, setToken] = useLocalStorage('token', null);
 
-  const login = (data) => {
-    setUser(data);
-    navigate('/', { replace: true });
-  };
+  useEffect(() => {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
+    }
+  }, [token]);
 
-  const logout = () => {
-    setUser(null);
-    navigate('/', { replace: true });
-  };
-
-  const value = useMemo(
+  const contextValue = useMemo(
     () => ({
-      user,
-      login,
-      logout
+      token,
+      setToken
     }),
-    [user]
+    [token]
   );
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return ( 
+    <AuthContext.Provider value={contextValue}>
+      {children}
+    </AuthContext.Provider> 
+  );
 }

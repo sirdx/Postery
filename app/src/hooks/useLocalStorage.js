@@ -17,7 +17,11 @@ export function useLocalStorage(key, defaultValue) {
 
   const setValue = (newValue) => {
     try {
-      localStorage.setItem(key, JSON.stringify(newValue));
+      if (newValue === null) {
+        localStorage.removeItem(key);
+      } else {
+        localStorage.setItem(key, JSON.stringify(newValue));
+      }
     } catch (error) {}
 
     setStoredValue(newValue);
