@@ -4,6 +4,7 @@ import 'src/styles/PageHome.scss';
 import { useTranslation } from 'react-i18next';
 import { getRecentActiveUsers } from 'src/api/User';
 import Header from 'src/components/common/Header';
+import { getPosts } from 'src/api/Post';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -12,7 +13,12 @@ export default function Home() {
   const [bestPosts, setBestPosts] = useState([]);
 
   useEffect(() => {
-    // TODO: Fetch posts
+    async function fetchNewestPosts() {
+      const response = await getPosts();
+      setNewestPosts(response);
+    }
+
+    fetchNewestPosts();
     
     const interval = setInterval(() => {
       async function fetchRecentActiveUsers() {

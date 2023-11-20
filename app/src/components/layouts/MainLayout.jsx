@@ -1,8 +1,8 @@
-import './Layout.scss';
+import './MainLayout.scss';
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from '../navigation/Navbar';
 
-export default function Layout() {
+export default function MainLayout() {
   return (
     <div className='layout'>
       <Navbar />

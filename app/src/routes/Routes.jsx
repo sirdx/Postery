@@ -4,6 +4,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Logout from 'src/pages/Logout';
 import Login from 'src/pages/Login';
 import Home from 'src/pages/Home';
+import MainLayout from 'src/components/layouts/MainLayout';
+import Posts from 'src/pages/Posts';
 
 export default function Routes() {
   const { userId } = useAuth(); 
@@ -11,11 +13,17 @@ export default function Routes() {
   const routesForPublic = [
     {
       path: '/',
-      element: <Home />
-    },
-    {
-      path: '/posts',
-      element: <></>
+      element: <MainLayout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />
+        },
+        {
+          path: '/posts',
+          element: <Posts />
+        }
+      ]
     }
   ];
 

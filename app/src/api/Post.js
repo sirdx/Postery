@@ -1,11 +1,15 @@
+import api from './api';
+
 export async function getPosts() {
-  try {
-    const response = await fetch('/api/posts');
-    const data = await response.json();
-    
-    return data;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  const { data } = await api.get('/posts');
+  return data;
+}
+
+export async function createPost(title, content) {
+  const { data } = await api.post('/posts', {
+    title: title,
+    content: content
+  });
+
+  return data;
 }

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getPosts } from "src/api/Post";
+import { useEffect, useState } from 'react';
+import { getPosts } from 'src/api/Post';
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);

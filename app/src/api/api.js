@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { USER_ID_KEY } from 'src/components/providers/AuthProvider';
 
 const api = axios.create({
   baseURL: '/api',
@@ -13,7 +14,7 @@ api.interceptors.response.use(
   async (error) => {
     if (error.response.status === 401) {
       try {
-        localStorage.removeItem('userId');
+        localStorage.removeItem(USER_ID_KEY);
       } catch (error) {
         return Promise.reject(error);
       }
