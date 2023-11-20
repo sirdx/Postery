@@ -5,6 +5,7 @@ import com.github.sirdx.postery.model.PostId
 import com.github.sirdx.postery.repository.PostRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import java.net.URI
 
@@ -25,7 +26,7 @@ class PostController(
     }
 
     @PostMapping
-    fun createPost(@RequestBody post: Post): ResponseEntity<Post> {
+    fun createPost(@RequestBody post: Post, authentication: Authentication): ResponseEntity<Post> {
         val savedPost = postRepository.save(post)
 
         return ResponseEntity.created(
