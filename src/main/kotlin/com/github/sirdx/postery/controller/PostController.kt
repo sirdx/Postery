@@ -6,6 +6,7 @@ import com.github.sirdx.postery.model.Post
 import com.github.sirdx.postery.model.PostId
 import com.github.sirdx.postery.repository.PostRepository
 import com.github.sirdx.postery.repository.UserRepository
+import jakarta.validation.Valid
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
@@ -22,25 +23,16 @@ class PostController(
 
     @GetMapping
     fun getPosts() =
-        postRepository.findAll().map { post ->
-            PostResponse(
-                id = post.id,
-                authorId = post.author.id,
-                title = post.title,
-                content = post.content,
-                createdAt = post.createdAt,
-                slug = post.slug
-            )
-        }
+        postRepository.findAll().map { it.toResponse() }
 
     @GetMapping("/{id}")
-    fun getPost(@PathVariable id: PostId): ResponseEntity<Post> {
+    fun getPost(@PathVariable id: PostId): ResponseEntity<PostResponse> {
         val post = postRepository.findByIdOrNull(id) ?: return ResponseEntity.notFound().build()
-        return ResponseEntity.ok(post)
+        return ResponseEntity.ok(post.toResponse())
     }
 
     @PostMapping
-    fun createPost(@RequestBody post: NewPostRequest, authentication: Authentication): ResponseEntity<PostResponse> {
+    fun createPost(@RequestBody @Valid post: NewPostRequest, authentication: Authentication): ResponseEntity<PostResponse> {
         val user = userRepository.findByNameOrEmail(authentication.name, authentication.name).getOrNull() ?:
             return ResponseEntity.badRequest().build()
 
@@ -50,18 +42,9 @@ class PostController(
             content = post.content
         ))
 
-        val response = PostResponse(
-            id = savedPost.id,
-            authorId = user.id,
-            title = savedPost.title,
-            content = savedPost.content,
-            createdAt = savedPost.createdAt,
-            slug = savedPost.slug
-        )
-
         return ResponseEntity.created(
             URI.create("/api/posts/" + savedPost.id)
-        ).body(response)
+        ).body(savedPost.toResponse())
     }
 
     @PutMapping("/{id}")

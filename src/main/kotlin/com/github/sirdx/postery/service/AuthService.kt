@@ -25,7 +25,7 @@ class AuthService(
     private val authenticationManager: AuthenticationManager
 ) {
 
-    fun register(registerRequest: RegisterRequest): String {
+    fun register(registerRequest: RegisterRequest): User {
         val email = registerRequest.email.trim()
         val name = registerRequest.name.trim()
         val password = registerRequest.password.trim()
@@ -42,7 +42,7 @@ class AuthService(
             password = passwordEncoder.encode(password)
         )
 
-        return userRepository.save(user).id.toString()
+        return userRepository.save(user)
     }
 
     fun login(authenticationRequest: AuthenticationRequest, request: HttpServletRequest, response: HttpServletResponse): String {
