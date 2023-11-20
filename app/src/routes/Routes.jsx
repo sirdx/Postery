@@ -6,7 +6,7 @@ import Login from 'src/pages/Login';
 import Home from 'src/pages/Home';
 
 export default function Routes() {
-  const { token } = useAuth(); 
+  const { userId } = useAuth(); 
 
   const routesForPublic = [
     {
@@ -41,7 +41,7 @@ export default function Routes() {
 
   const router = createBrowserRouter([
     ...routesForPublic,
-    ...(!token ? routesForNotAuthenticatedOnly : []),
+    ...(userId === null ? routesForNotAuthenticatedOnly : []),
     ...routesForAuthenticatedOnly
   ]);
 

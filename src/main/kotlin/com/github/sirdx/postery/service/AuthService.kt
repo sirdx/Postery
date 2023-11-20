@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.context.SecurityContextRepository
 import org.springframework.stereotype.Service
 import java.lang.IllegalStateException
+import kotlin.jvm.optionals.getOrNull
 
 @Service
 class AuthService(
@@ -44,7 +45,7 @@ class AuthService(
         return userRepository.save(user).id.toString()
     }
 
-    fun login(authenticationRequest: AuthenticationRequest, request: HttpServletRequest, response: HttpServletResponse) {
+    fun login(authenticationRequest: AuthenticationRequest, request: HttpServletRequest, response: HttpServletResponse): String {
         val nameOrEmail = authenticationRequest.nameOrEmail
         val password = authenticationRequest.password
 
@@ -56,5 +57,8 @@ class AuthService(
         }
         securityContextHolderStrategy.context = context
         securityContextRepository.saveContext(context, request, response)
+
+        val user = userRepository.findByNameOrEmail(nameOrEmail, nameOrEmail)
+        return user.getOrNull()?.id?.toString() ?: "0"
     }
 }

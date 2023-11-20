@@ -1,25 +1,28 @@
-import axios from 'axios';
-import { useEffect, useMemo } from 'react';
+import {  useMemo } from 'react';
+import { login, logout } from 'src/api/Auth';
 import { AuthContext } from 'src/hooks/useAuth';
 import { useLocalStorage } from 'src/hooks/useLocalStorage';
 
 export default function AuthProvider({ children }) {
-  const [token, setToken] = useLocalStorage('token', null);
+  const [userId, setUserId] = useLocalStorage('userId', null);
 
-  useEffect(() => {
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    } else {
-      delete axios.defaults.headers.common['Authorization'];
-    }
-  }, [token]);
+  const handleLogin = async (nameOrEmail, password) => {
+    const userId = await login(nameOrEmail, password);
+    setUserId(userId);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    setUserId(null);
+  };
 
   const contextValue = useMemo(
     () => ({
-      token,
-      setToken
+      userId,
+      onLogin: handleLogin,
+      onLogout: handleLogout
     }),
-    [token]
+    [userId]
   );
 
   return ( 

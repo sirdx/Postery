@@ -17,7 +17,6 @@ class AuthenticationEntryPoint(
         response: HttpServletResponse,
         authException: AuthenticationException
     ) {
-        response.addHeader("WWW-Authenticate", "Basic realm=$realmName")
         response.status = HttpServletResponse.SC_UNAUTHORIZED
         response.contentType = "application/json;charset=UTF-8"
 

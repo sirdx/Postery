@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+import { register } from 'src/api/Auth';
 import { useAuth } from 'src/hooks/useAuth';
 
 export default function Login() {
-  const { setToken } = useAuth();
+  const { onLogin } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setToken(''); // TODO: api/auth/authenticate
+  const handleLogin = async () => {
+    //await register('react', 'react@gmail.com', '123');
+    await onLogin('react', '123');
     navigate('/', { replace: true });
   };
 
