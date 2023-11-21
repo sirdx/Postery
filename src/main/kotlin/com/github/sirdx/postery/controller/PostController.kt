@@ -7,6 +7,8 @@ import com.github.sirdx.postery.model.PostId
 import com.github.sirdx.postery.repository.PostRepository
 import com.github.sirdx.postery.repository.UserRepository
 import jakarta.validation.Valid
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
@@ -24,6 +26,18 @@ class PostController(
     @GetMapping
     fun getPosts() =
         postRepository.findAll().map { it.toResponse() }
+
+    @GetMapping("/newest")
+    fun getNewestPosts(
+        @RequestParam(defaultValue = "0") page: Int,
+        @RequestParam(defaultValue = "5") size: Int
+    ): List<PostResponse> {
+        val paging = PageRequest.of(page, size, Sort.by("createdAt").descending())
+        val pagePosts = postRepository.findAll(paging)
+        val posts = pagePosts.content
+
+        return posts.map { it.toResponse() }
+    }
 
     @GetMapping("/{id}")
     fun getPost(@PathVariable id: PostId): ResponseEntity<PostResponse> {

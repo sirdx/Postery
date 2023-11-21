@@ -10,31 +10,22 @@ import PostPreview from 'src/components/home/PostPreview';
 
 export default function Home() {
   const { t } = useTranslation();
-  const [recentActiveUsers, setRecentActiveUsers] = useState([]);
-  const [newestPosts, setNewestPosts] = useState([]);
-  const [bestPosts, setBestPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     fetchPosts();
   }, []);
-
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
 
   const fetchPosts = async () => {
     setIsLoading(true);
     setError(null);
 
     try {
-      //const data = await getNewestPosts(page);
-      const data = [{title:'test', content: 'test'},
-      {title:'test', content: 'test'},
-      {title:'test', content: 'test'},
-      {title:'test', content: 'test'},
-      {title:'test', content: 'test'},
-      {title:'test', content: 'test'}];
+      const data = await getNewestPosts(page);
+
       setPosts(prevPosts => [...prevPosts, ...data]);
       setPage(prevPage => prevPage + 1);
     } catch (error) {

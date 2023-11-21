@@ -6,7 +6,7 @@ export async function getPosts() {
 }
 
 export async function getNewestPosts(page) {
-  const { data } = await api.get('/posts', {
+  const { data } = await api.get('/posts/newest', {
     params: { page: page }
   });
 

@@ -8,9 +8,9 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    await register('react', 'react@gmail.com', '123');
+    //await register('react', 'react@gmail.com', '123');
     await onLogin('react', '123');
-    await createPost('Nowy post', 'Test');
+    await createPost('Nowy jiaoegjrioeagjir', 'gjkaghralghruhughaugrhua');
     navigate('/', { replace: true });
   };
 
