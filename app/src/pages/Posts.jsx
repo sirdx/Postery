@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { getPosts } from 'src/api/Post';
+import { } from 'src/api/Post';
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await getPosts();
-      setPosts(response);
+      //const response = await getPosts();
+      //setPosts(response);
     }
 
     fetchPosts();

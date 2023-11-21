@@ -10,8 +10,10 @@ export default function DarkModeToggle() {
   };
 
   return (
-    <button onClick={toggleTheme}>
-      {theme === 'dark' ? <>LM</> : <>DM</>}
+    <button 
+      onClick={toggleTheme}
+      className={`dark-mode-toggle ${theme}`}
+    >
     </button>
   );
 }

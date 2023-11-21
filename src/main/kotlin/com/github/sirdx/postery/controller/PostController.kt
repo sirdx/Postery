@@ -23,15 +23,15 @@ class PostController(
     private val userRepository: UserRepository
 ) {
 
-    @GetMapping
-    fun getPosts() =
-        postRepository.findAll().map { it.toResponse() }
-
     @GetMapping("/newest")
     fun getNewestPosts(
         @RequestParam(defaultValue = "0") page: Int,
         @RequestParam(defaultValue = "5") size: Int
     ): List<PostResponse> {
+        if (size > 20) { // TODO: Better way to prevent API abuse
+            return listOf()
+        }
+
         val paging = PageRequest.of(page, size, Sort.by("createdAt").descending())
         val pagePosts = postRepository.findAll(paging)
         val posts = pagePosts.content

@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import PostsPanel from 'src/components/home/PostsPanel';
 import 'src/styles/PageHome.scss';
 import { useTranslation } from 'react-i18next';
 import { getRecentActiveUsers } from 'src/api/User';
 import Header from 'src/components/common/Header';
-import { getNewestPosts, getPosts } from 'src/api/Post';
+import { getNewestPosts } from 'src/api/Post';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PostPreview from 'src/components/home/PostPreview';
 
