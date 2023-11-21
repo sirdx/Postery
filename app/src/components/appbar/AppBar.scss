@@ -1,0 +1,53 @@
+@import 'src/styles/theme.scss';
+
+.appbar {
+  padding: 15px 40px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr 1fr 1fr;
+  transition: background-color ease-in-out .2s;
+
+  @include themify() {
+    background-color: #ffffff;
+  }
+
+  .appbar-brand {
+    align-self: center;
+
+    a {
+      font-size: x-large;
+      font-weight: bold;
+      text-decoration: none;
+      user-select: none;
+
+      @include themify() {
+        color: #202020;
+      }
+    }
+  }
+
+  .appbar-search {
+    display: flex;
+    background-color: #efefef;
+
+    .search-icon {
+      width: 15px;
+      height: 15px;
+      margin: 15px 20px;
+      background-color: black;
+    }
+    
+    input {
+      width: 100%;
+      border: 0;
+      outline: none;
+      background-color: transparent;
+    }
+  }
+
+  .appbar-options {
+    display: flex;
+    flex-direction: row;
+    justify-self: end;
+  }
+}

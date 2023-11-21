@@ -1,10 +1,10 @@
 import './PostPreview.scss';
 
-export default function PostPreview({ href, title, content, author }) {
+export default function PostPreview({ post }) {
   return (
     <li className='posts-panel-item'>
-      <a href={href}><h3>{title}</h3></a>
-      <p>{content}</p>
+      <a href={post.href}><h3>{post.title}</h3></a>
+      <p>{post.content}</p>
     </li>
   );
 }

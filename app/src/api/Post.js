@@ -5,6 +5,14 @@ export async function getPosts() {
   return data;
 }
 
+export async function getNewestPosts(page) {
+  const { data } = await api.get('/posts', {
+    params: { page: page }
+  });
+
+  return data;
+}
+
 export async function createPost(title, content) {
   const { data } = await api.post('/posts', {
     title: title,
