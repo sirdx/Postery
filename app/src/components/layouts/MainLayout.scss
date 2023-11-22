@@ -69,49 +69,6 @@
         @include themify() {
           background-color: #ffffff;
         }
-  
-        a {
-          text-decoration: none;
-        }
-  
-        .tab {
-          height: 60px;
-          display: flex;
-          cursor: pointer;
-          
-          &[active='1'] {
-            background-color: #eaeaea;
-
-            .content {
-              color: green;
-
-              .icon {
-                background-color: green;
-              }
-            }
-
-            &::before {
-              content: '';
-              width: 5px;
-              height: 100%;
-              background-color: green;
-            }
-          }
-
-          .content {
-            padding: 20px 0 20px 30px;
-            display: flex;
-            font-weight: bold;
-            color: #202020;
-  
-            .icon {
-              width: 20px;
-              height: 20px;
-              margin-right: 25px;
-              background-color: #333333;
-            }
-          }
-        }
       }
   
       .create-post {

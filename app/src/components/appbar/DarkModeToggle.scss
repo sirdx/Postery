@@ -1,3 +1,11 @@
 .dark-mode-toggle {
+  display: flex;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 
+  svg {
+    width: 25px;
+    height: 25px;
+  }
 }

@@ -4,8 +4,11 @@ import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 import LanguageSwitcher from './LanguageSwitcher';
 import DarkModeToggle from './DarkModeToggle';
 import { useState } from 'react';
+import { TbSearch } from 'react-icons/tb';
+import { useAuth } from 'src/hooks/useAuth';
 
 export default function AppBar() {
+  const { userId } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -31,7 +34,7 @@ export default function AppBar() {
         <Link to='/'>Postery</Link>
       </span>
       <div className='appbar-search'>
-        <span className='search-icon'></span>
+        <TbSearch className='search-icon' />
         <input 
           type='text' 
           placeholder='Search for posts'
@@ -43,6 +46,20 @@ export default function AppBar() {
       <div className='appbar-options'>
         <DarkModeToggle />
         <LanguageSwitcher />
+        {userId === null &&
+          <Link to='/login'>
+            <button className='login-button'>
+              Login
+            </button>
+          </Link>
+        }
+        {userId !== null &&
+          <Link to='/logout'>
+            <button className='login-button'>
+              Logout
+            </button>
+          </Link>
+        }
       </div>
     </header>
   );

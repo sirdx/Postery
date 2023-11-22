@@ -1,5 +1,6 @@
 import {  useMemo } from 'react';
 import { login, logout, register } from 'src/api/Auth';
+import { getUser } from 'src/api/User';
 import { AuthContext } from 'src/hooks/useAuth';
 import { useLocalStorage } from 'src/hooks/useLocalStorage';
 
@@ -21,6 +22,10 @@ export default function AuthProvider({ children }) {
     setUserName(data.name);
     setUserDisplayName(data.displayName);
     setUserProfileColor(data.profileColor);
+  };
+
+  const handleUserData = async () => {
+    return await getUser(userId);
   };
 
   const handleLogin = async (nameOrEmail, password) => {
@@ -50,7 +55,8 @@ export default function AuthProvider({ children }) {
   const contextValue = useMemo(
     () => ({
       userId,
-      userName,
+      onUserData: handleUserData,
+      userName, // TODO: Remove these
       userDisplayName,
       userProfileColor,
       onLogin: handleLogin,

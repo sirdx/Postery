@@ -4,6 +4,7 @@ import AppBar from '../appbar/AppBar';
 import { Link } from 'react-router-dom';
 import SideBarTab from './SideBarTab';
 import { useAuth } from 'src/hooks/useAuth';
+import { TbCompass, TbHome } from 'react-icons/tb';
 
 export default function MainLayout() {
   const { userId, userName, userDisplayName, userProfileColor } = useAuth();
@@ -27,8 +28,12 @@ export default function MainLayout() {
             </div>
           }    
           <nav className='sidebar'>
-            <SideBarTab to='/' name='nav_home' />
-            <SideBarTab to='/posts' name='nav_posts' />
+            <SideBarTab to='/' name='nav_home'>
+              <TbHome />
+            </SideBarTab>
+            <SideBarTab to='/posts' name='nav_posts'>
+              <TbCompass />
+            </SideBarTab>
           </nav>
           {userId !== null &&
             <Link to='/new-post'>
