@@ -3,8 +3,11 @@ import { Outlet } from 'react-router-dom';
 import AppBar from '../appbar/AppBar';
 import { Link } from 'react-router-dom';
 import SideBarTab from './SideBarTab';
+import { useAuth } from 'src/hooks/useAuth';
 
 export default function MainLayout() {
+  const { userId, userName, userDisplayName, userProfileColor } = useAuth();
+
   const handleCreatePost = () => {
 
   };
@@ -14,23 +17,26 @@ export default function MainLayout() {
       <AppBar />
       <div className='layout-content'>
         <aside className='home-left'>
-          <div className='user-badge'>
-            <div className='avatar'></div>
-            <div className='names'>
-              <span className='display-name'>New User</span>
-              <span className='username'>newuser</span>
+          {userId !== null &&
+            <div className='user-badge'>
+              <div className='avatar' style={{ backgroundColor: `#${userProfileColor}` }}></div>
+              <div className='names'>
+                <span className='display-name'>{userDisplayName}</span>
+                <span className='username'>{userName}</span>
+              </div>
             </div>
-          </div>
+          }    
           <nav className='sidebar'>
             <SideBarTab to='/' name='nav_home' />
             <SideBarTab to='/posts' name='nav_posts' />
           </nav>
-          <button 
-            className='create-post'
-            onClick={handleCreatePost}
-          >
-            Create Post
-          </button>
+          {userId !== null &&
+            <Link to='/new-post'>
+              <button className='create-post'>
+                Create Post
+              </button>
+            </Link>
+          }
         </aside>
         <main id='main'>
           <Outlet />

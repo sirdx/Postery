@@ -6,9 +6,9 @@ import './main.scss';
 import './services/i18n';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ThemeProvider>
       <App />
     </ThemeProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

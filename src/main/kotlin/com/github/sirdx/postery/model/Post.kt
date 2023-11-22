@@ -33,6 +33,9 @@ data class Post(
         PostResponse(
             id = id,
             authorId = author.id,
+            authorName = author.name,
+            authorDisplayName = author.displayName,
+            authorProfileColor = author.profileColor,
             title = title,
             content = content,
             createdAt = createdAt,

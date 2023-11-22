@@ -7,6 +7,9 @@ import java.time.Instant
 data class PostResponse(
     val id: PostId,
     val authorId: UserId,
+    val authorName: String,
+    val authorDisplayName: String,
+    val authorProfileColor: String,
     val title: String,
     val content: String,
     val createdAt: Instant,

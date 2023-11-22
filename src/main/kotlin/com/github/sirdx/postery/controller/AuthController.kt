@@ -2,17 +2,16 @@ package com.github.sirdx.postery.controller
 
 import com.github.sirdx.postery.dto.request.AuthenticationRequest
 import com.github.sirdx.postery.dto.request.RegisterRequest
+import com.github.sirdx.postery.dto.response.UserResponse
 import com.github.sirdx.postery.service.AuthService
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -24,16 +23,20 @@ class AuthController(
     @PostMapping("/register")
     fun register(
         @RequestBody @Valid registerRequest: RegisterRequest
-    ): ResponseEntity<Any> {
+    ): ResponseEntity<UserResponse> {
         val registeredUser = authService.register(registerRequest)
-        return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser.id)
+        return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser)
     }
 
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
     fun login(
         @RequestBody authenticationRequest: AuthenticationRequest,
         request: HttpServletRequest,
         response: HttpServletResponse
-    ) = ResponseEntity.ok().body(authService.login(authenticationRequest, request, response))
+    ): ResponseEntity<UserResponse> {
+        val user = authService.login(authenticationRequest, request, response) ?:
+            return ResponseEntity.internalServerError().build()
+
+        return ResponseEntity.ok().body(user)
+    }
 }

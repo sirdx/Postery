@@ -5,7 +5,7 @@ export default function ProtectedRoute() {
   const { userId } = useAuth();
 
   if (userId === null) {
-    return <Navigate to='/login' />;
+    return <Navigate to='/login' replace={true} />;
   }
 
   return <Outlet />;

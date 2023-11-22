@@ -1,7 +1,7 @@
 package com.github.sirdx.postery.model
 
+import com.github.sirdx.postery.dto.response.UserResponse
 import jakarta.persistence.*
-import jakarta.validation.constraints.NotBlank
 import java.time.Instant
 
 typealias UserId = Long
@@ -21,12 +21,27 @@ data class User(
 
     val name: String,
 
+    val displayName: String,
+
     val email: String,
 
     val password: String,
+
+    @Column(length = 6)
+    val profileColor: String, // HEX
 
     @OneToMany(mappedBy = "author")
     val posts: List<Post> = listOf(),
 
     val createdAt: Instant = Instant.now()
-)
+) {
+
+    fun toResponse() =
+        UserResponse(
+            id = id,
+            name = name,
+            displayName = displayName,
+            profileColor = profileColor,
+            createdAt = createdAt
+        )
+}

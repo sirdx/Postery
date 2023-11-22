@@ -6,6 +6,8 @@ import Login from 'src/pages/Login';
 import Home from 'src/pages/Home';
 import MainLayout from 'src/components/layouts/MainLayout';
 import Posts from 'src/pages/Posts';
+import NewPost from 'src/pages/NewPost';
+import Register from 'src/pages/Register';
 
 export default function Routes() {
   const { userId } = useAuth(); 
@@ -35,6 +37,10 @@ export default function Routes() {
         {
           path: 'logout',
           element: <Logout />
+        },
+        {
+          path: 'new-post',
+          element: <NewPost />
         }
       ]
     }
@@ -44,12 +50,16 @@ export default function Routes() {
     {
       path: '/login',
       element: <Login />
+    },
+    {
+      path: '/register',
+      element: <Register />
     }
   ];
 
   const router = createBrowserRouter([
     ...routesForPublic,
-    ...(userId === null ? routesForNotAuthenticatedOnly : []),
+    ...(userId === null ? routesForNotAuthenticatedOnly : []), // FIXME: Works only after the 2nd refresh
     ...routesForAuthenticatedOnly
   ]);
 

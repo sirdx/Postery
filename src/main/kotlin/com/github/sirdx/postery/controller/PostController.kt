@@ -16,12 +16,30 @@ import org.springframework.web.bind.annotation.*
 import java.net.URI
 import kotlin.jvm.optionals.getOrNull
 
+// TODO: PostService
 @RestController
 @RequestMapping("/api/posts")
 class PostController(
     private val postRepository: PostRepository,
     private val userRepository: UserRepository
 ) {
+
+    @GetMapping("/search")
+    fun searchPosts(
+        @RequestParam(required = true) query: String,
+        @RequestParam(defaultValue = "0") page: Int,
+        @RequestParam(defaultValue = "10") size: Int
+    ): List<PostResponse> {
+        if (size > 20) { // TODO: Better way to prevent API abuse
+            return listOf()
+        }
+
+        val paging = PageRequest.of(page, size, Sort.by("created_at").descending())
+        val pagePosts = postRepository.search(query, paging)
+        val posts = pagePosts.content
+
+        return posts.map { it.toResponse() }
+    }
 
     @GetMapping("/newest")
     fun getNewestPosts(

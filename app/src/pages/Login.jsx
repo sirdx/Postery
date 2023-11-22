@@ -1,22 +1,41 @@
 import { useNavigate } from 'react-router-dom';
-import { register } from 'src/api/Auth';
-import { createPost } from 'src/api/Post';
 import { useAuth } from 'src/hooks/useAuth';
+import { useState } from 'react';
 
 export default function Login() {
   const { onLogin } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    //await register('react', 'react@gmail.com', '123');
-    await onLogin('react', '123');
-    await createPost('Nowy jiaoegjrioeagjir', 'gjkaghralghruhughaugrhua');
+  const [nameOrEmail, setNameOrEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    await onLogin(
+      nameOrEmail, 
+      password
+    );
     navigate('/', { replace: true });
   };
 
   return (
-    <>
-      <button onClick={handleLogin}>Login</button>
-    </>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type='text'
+          placeholder='Name or email'
+          value={nameOrEmail}
+          onChange={(e) => setNameOrEmail(e.target.value)}
+        /><br />
+        <input 
+          type='password'
+          placeholder='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        /><br />
+        <input type='submit' value='Login' />
+      </form>
+    </div>
   );
 }

@@ -2,6 +2,7 @@ package com.github.sirdx.postery.service
 
 import com.github.sirdx.postery.dto.request.AuthenticationRequest
 import com.github.sirdx.postery.dto.request.RegisterRequest
+import com.github.sirdx.postery.dto.response.UserResponse
 import com.github.sirdx.postery.model.User
 import com.github.sirdx.postery.repository.UserRepository
 import jakarta.servlet.http.HttpServletRequest
@@ -25,10 +26,12 @@ class AuthService(
     private val authenticationManager: AuthenticationManager
 ) {
 
-    fun register(registerRequest: RegisterRequest): User {
+    fun register(registerRequest: RegisterRequest): UserResponse {
         val email = registerRequest.email.trim()
+        val displayName = registerRequest.displayName.trim()
         val name = registerRequest.name.trim()
         val password = registerRequest.password.trim()
+        val profileColor = registerRequest.profileColor
 
         val exists = userRepository.findByNameOrEmail(name, email)
 
@@ -38,14 +41,16 @@ class AuthService(
 
         val user = User(
             name = name,
+            displayName = displayName,
             email = email,
-            password = passwordEncoder.encode(password)
+            password = passwordEncoder.encode(password),
+            profileColor = profileColor
         )
 
-        return userRepository.save(user)
+        return userRepository.save(user).toResponse()
     }
 
-    fun login(authenticationRequest: AuthenticationRequest, request: HttpServletRequest, response: HttpServletResponse): String {
+    fun login(authenticationRequest: AuthenticationRequest, request: HttpServletRequest, response: HttpServletResponse): UserResponse? {
         val nameOrEmail = authenticationRequest.nameOrEmail
         val password = authenticationRequest.password
 
@@ -59,6 +64,6 @@ class AuthService(
         securityContextRepository.saveContext(context, request, response)
 
         val user = userRepository.findByNameOrEmail(nameOrEmail, nameOrEmail)
-        return user.getOrNull()?.id?.toString() ?: "0"
+        return user.getOrNull()?.toResponse()
     }
 }
