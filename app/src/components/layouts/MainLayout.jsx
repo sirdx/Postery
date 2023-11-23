@@ -5,9 +5,24 @@ import { Link } from 'react-router-dom';
 import SideBarTab from './SideBarTab';
 import { useAuth } from 'src/hooks/useAuth';
 import { TbCompass, TbHome } from 'react-icons/tb';
+import { useEffect, useState } from 'react';
 
 export default function MainLayout() {
-  const { userId, userName, userDisplayName, userProfileColor } = useAuth();
+  const { userId, onUserData } = useAuth();
+  const [userName, setUserName] = useState('');
+  const [userDisplayName, setUserDisplayName] = useState('');
+  const [userProfileColor, setUserProfileColor] = useState('#ffffff');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userData = await onUserData();
+      setUserName(userData.name);
+      setUserDisplayName(userData.displayName);
+      setUserProfileColor(userData.profileColor);
+    };
+
+    fetchData();
+  }, [userId]);
 
   const handleCreatePost = () => {
 
