@@ -14,8 +14,14 @@ export default function AuthProvider({ children }) {
   };
 
   const handleLogin = async (nameOrEmail, password) => {
-    const userData = await login(nameOrEmail, password);
-    setUserId(userData.id);
+    const response = await login(nameOrEmail, password);
+
+    if (response.id === undefined) {
+      return response;
+    }
+
+    setUserId(response.id);
+    return null;
   };
 
   const handleLogout = async () => {

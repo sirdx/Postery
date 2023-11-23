@@ -1,12 +1,20 @@
 import api from './api';
 
 export async function login(nameOrEmail, password) {
-  const { data } = await api.post('/auth/login', {
-    nameOrEmail: nameOrEmail,
-    password: password
-  });
+  try {
+    const { data } = await api.post('/auth/login', {
+      nameOrEmail: nameOrEmail,
+      password: password
+    });
+    
+    return data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      return "Invalid credentials.";
+    }
 
-  return data;
+    return "Unknown error. Try again later.";
+  }
 }
 
 export async function logout() {

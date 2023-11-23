@@ -1,3 +1,4 @@
+import 'src/styles/ComponentsCommon.scss';
 import { useAuth } from 'src/hooks/useAuth';
 import ProtectedRoute from './ProtectedRoute';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
