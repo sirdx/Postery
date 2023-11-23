@@ -51,12 +51,15 @@ export default function AppBar({ userId, userProfileColor }) {
             </button>
           </Link>
         }
-        {userId !== null &&
-          <Link to='/logout'>
-            <button className='login-button'>
-              Log out
-            </button>
-          </Link>
+        {userId !== null && 
+          <>
+            <Link to='/logout'>
+              <button className='login-button'>
+                Log out
+              </button>
+            </Link>
+            <div className='avatar' style={{ backgroundColor: `#${userProfileColor}` }}></div>
+          </>
         }
       </div>
     </header>

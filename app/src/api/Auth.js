@@ -18,7 +18,11 @@ export async function login(nameOrEmail, password) {
 }
 
 export async function logout() {
-  await api.post('/auth/logout');
+  try {
+    await api.post('/auth/logout');
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function register(

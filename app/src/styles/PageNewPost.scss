@@ -1,0 +1,40 @@
+.new-post-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  background-color: #efefef;
+
+  .new-post-form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    padding: 30px;
+    background-color: #ffffff;
+
+    form {
+      height: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+
+      .content {
+        height: 100%;
+        margin-top: 15px;
+        margin-bottom: 20px;
+      }
+
+      .error-message {
+        color: red;
+        font-size: small;
+        text-align: left;
+      }
+
+      .create {
+        margin-top: 10px;
+      }
+    }
+  }
+}

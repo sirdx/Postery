@@ -1,4 +1,3 @@
-import 'src/styles/ComponentsCommon.scss';
 import ProtectedRoute from './ProtectedRoute';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Logout from 'src/pages/Logout';

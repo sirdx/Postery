@@ -20,10 +20,18 @@ export async function searchPosts(query, page) {
 }
 
 export async function createPost(title, content) {
-  const { data } = await api.post('/posts', {
-    title: title,
-    content: content
-  });
+  try {
+    const { data } = await api.post('/posts', {
+      title: title,
+      content: content
+    });
+    
+    return data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      return "Unauthorized to create a post.";
+    }
 
-  return data;
+    return "Unknown error. Try again later.";
+  }
 }
