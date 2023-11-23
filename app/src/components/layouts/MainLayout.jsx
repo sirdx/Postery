@@ -1,11 +1,9 @@
 import './MainLayout.scss';
 import { Outlet } from 'react-router-dom';
-import AppBar from '../appbar/AppBar';
 import { Link } from 'react-router-dom';
-import SideBarTab from './SideBarTab';
 import { useAuth } from 'src/hooks/useAuth';
-import { TbCompass, TbHome } from 'react-icons/tb';
 import { useEffect, useState } from 'react';
+import Sidebar from '../sidebar/SideBar';
 
 export default function MainLayout() {
   const { userId, onUserData } = useAuth();
@@ -15,6 +13,10 @@ export default function MainLayout() {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (userId === null) {
+        return;
+      }
+
       const userData = await onUserData();
       setUserName(userData.name);
       setUserDisplayName(userData.displayName);
@@ -29,45 +31,35 @@ export default function MainLayout() {
   };
 
   return (
-    <div className='layout'>
-      <AppBar />
-      <div className='layout-content'>
-        <aside className='home-left'>
-          {userId !== null &&
-            <div className='user-badge'>
-              <div className='avatar' style={{ backgroundColor: `#${userProfileColor}` }}></div>
-              <div className='names'>
-                <span className='display-name'>{userDisplayName}</span>
-                <span className='username'>{userName}</span>
-              </div>
+    <div className='main-layout'>
+      <aside className='home-left'>
+        {userId !== null &&
+          <div className='user-badge'>
+            <div className='avatar' style={{ backgroundColor: `#${userProfileColor}` }}></div>
+            <div className='names'>
+              <span className='display-name'>{userDisplayName}</span>
+              <span className='username'>{userName}</span>
             </div>
-          }    
-          <nav className='sidebar'>
-            <SideBarTab to='/' name='nav_home'>
-              <TbHome />
-            </SideBarTab>
-            <SideBarTab to='/posts' name='nav_posts'>
-              <TbCompass />
-            </SideBarTab>
-          </nav>
-          {userId !== null &&
-            <Link to='/new-post'>
-              <button className='create-post'>
-                Create Post
-              </button>
-            </Link>
-          }
-        </aside>
-        <main id='main'>
-          <Outlet />
-        </main>
-        <aside className='home-right'>
-          <div className='users-list'>
-            <span className='title'>Users</span>
-            
           </div>
-        </aside>
-      </div>
+        }    
+        <Sidebar />
+        {userId !== null &&
+          <Link to='/new-post'>
+            <button className='create-post'>
+              Create Post
+            </button>
+          </Link>
+        }
+      </aside>
+      <main id='main'>
+        <Outlet />
+      </main>
+      <aside className='home-right'>
+        <div className='users-list'>
+          <span className='title'>Users</span>
+          
+        </div>
+      </aside>
     </div>
   );
 }

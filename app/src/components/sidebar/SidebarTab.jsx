@@ -1,8 +1,8 @@
-import './SideBarTab.scss';
+import './SidebarTab.scss';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 
-export default function SideBarTab({ to, name, children }) {
+export default function SidebarTab({ to, name, children }) {
   const { t } = useTranslation();
   const location = useLocation();
 

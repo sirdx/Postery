@@ -5,10 +5,8 @@ import LanguageSwitcher from './LanguageSwitcher';
 import DarkModeToggle from './DarkModeToggle';
 import { useState } from 'react';
 import { TbSearch } from 'react-icons/tb';
-import { useAuth } from 'src/hooks/useAuth';
 
-export default function AppBar() {
-  const { userId } = useAuth();
+export default function AppBar({ userId, userProfileColor }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
