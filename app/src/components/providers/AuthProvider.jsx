@@ -1,4 +1,4 @@
-import {  useMemo } from 'react';
+import { useMemo } from 'react';
 import { login, logout, register } from 'src/api/Auth';
 import { getUser } from 'src/api/User';
 import { AuthContext } from 'src/hooks/useAuth';
@@ -36,8 +36,14 @@ export default function AuthProvider({ children }) {
     password,
     profileColor
   ) => {
-    const userData = await register(name, displayName, email, password, profileColor);
-    setUserId(userData.id);
+    const response = await register(name, displayName, email, password, profileColor);
+
+    if (response.id === undefined) {
+      return response;
+    }
+
+    setUserId(response.id);
+    return null;
   };
 
   const contextValue = useMemo(

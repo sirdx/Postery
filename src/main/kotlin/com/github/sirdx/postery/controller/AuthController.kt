@@ -22,10 +22,12 @@ class AuthController(
 
     @PostMapping("/register")
     fun register(
-        @RequestBody @Valid registerRequest: RegisterRequest
+        @RequestBody @Valid registerRequest: RegisterRequest,
+        request: HttpServletRequest,
+        response: HttpServletResponse
     ): ResponseEntity<UserResponse> {
-        val registeredUser = authService.register(registerRequest)
-        return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser)
+        val registeredUser = authService.register(registerRequest, request, response)
+        return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser.toResponse())
     }
 
     @PostMapping("/login")
@@ -37,6 +39,6 @@ class AuthController(
         val user = authService.login(authenticationRequest, request, response) ?:
             return ResponseEntity.internalServerError().build()
 
-        return ResponseEntity.ok().body(user)
+        return ResponseEntity.ok().body(user.toResponse())
     }
 }

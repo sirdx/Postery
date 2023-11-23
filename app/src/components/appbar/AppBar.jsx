@@ -49,14 +49,14 @@ export default function AppBar() {
         {userId === null &&
           <Link to='/login'>
             <button className='login-button'>
-              Login
+              Log in
             </button>
           </Link>
         }
         {userId !== null &&
           <Link to='/logout'>
             <button className='login-button'>
-              Logout
+              Log out
             </button>
           </Link>
         }

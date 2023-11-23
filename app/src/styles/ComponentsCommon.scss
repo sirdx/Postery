@@ -22,4 +22,9 @@ input {
       cursor: not-allowed; 
     }
   }
+
+  &[type='color'] {
+    width: 50px;
+    padding: 2px;
+  }
 }

@@ -28,13 +28,17 @@ export async function register(
   password, 
   profileColor
 ) {
-  const { data } = await api.post('/auth/register', {
-    name: name,
-    displayName: displayName,
-    email: email,
-    password: password,
-    profileColor: profileColor
-  });
-
-  return data;
+  try {
+    const { data } = await api.post('/auth/register', {
+      name: name,
+      displayName: displayName,
+      email: email,
+      password: password,
+      profileColor: profileColor
+    });
+  
+    return data;
+  } catch (error) {
+    return "Unknown error. Try again later.";
+  }
 }

@@ -2,7 +2,6 @@ package com.github.sirdx.postery.service
 
 import com.github.sirdx.postery.dto.request.AuthenticationRequest
 import com.github.sirdx.postery.dto.request.RegisterRequest
-import com.github.sirdx.postery.dto.response.UserResponse
 import com.github.sirdx.postery.model.User
 import com.github.sirdx.postery.repository.UserRepository
 import jakarta.servlet.http.HttpServletRequest
@@ -26,7 +25,11 @@ class AuthService(
     private val authenticationManager: AuthenticationManager
 ) {
 
-    fun register(registerRequest: RegisterRequest): UserResponse {
+    fun register(
+        registerRequest: RegisterRequest,
+        request: HttpServletRequest,
+        response: HttpServletResponse
+    ): User {
         val email = registerRequest.email.trim()
         val displayName = registerRequest.displayName.trim()
         val name = registerRequest.name.trim()
@@ -47,10 +50,25 @@ class AuthService(
             profileColor = profileColor
         )
 
-        return userRepository.save(user).toResponse()
+        val savedUser = userRepository.save(user)
+
+        val token = UsernamePasswordAuthenticationToken(name, password)
+        val authentication = authenticationManager.authenticate(token)
+
+        val context = SecurityContextHolder.createEmptyContext().apply {
+            setAuthentication(authentication)
+        }
+        securityContextHolderStrategy.context = context
+        securityContextRepository.saveContext(context, request, response)
+
+        return savedUser
     }
 
-    fun login(authenticationRequest: AuthenticationRequest, request: HttpServletRequest, response: HttpServletResponse): UserResponse? {
+    fun login(
+        authenticationRequest: AuthenticationRequest,
+        request: HttpServletRequest,
+        response: HttpServletResponse
+    ): User? {
         val nameOrEmail = authenticationRequest.nameOrEmail
         val password = authenticationRequest.password
 
@@ -64,6 +82,6 @@ class AuthService(
         securityContextRepository.saveContext(context, request, response)
 
         val user = userRepository.findByNameOrEmail(nameOrEmail, nameOrEmail)
-        return user.getOrNull()?.toResponse()
+        return user.getOrNull()
     }
 }

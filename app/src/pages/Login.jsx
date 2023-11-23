@@ -69,7 +69,7 @@ export default function Login() {
             </div>
             <input 
               type='submit' 
-              value='Login'
+              value='Sign in'
               disabled={loggingIn}
             />
             <p className='error-message'>{apiError}</p>
