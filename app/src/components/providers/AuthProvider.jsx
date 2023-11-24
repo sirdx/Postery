@@ -9,10 +9,6 @@ export const USER_ID_KEY = 'userId';
 export default function AuthProvider({ children }) {
   const [userId, setUserId] = useLocalStorage(USER_ID_KEY, null);
 
-  const handleUserData = async () => {
-    return await getUser(userId);
-  };
-
   const handleLogin = async (nameOrEmail, password) => {
     const response = await login(nameOrEmail, password);
     const data = response.data;
@@ -51,7 +47,6 @@ export default function AuthProvider({ children }) {
   const contextValue = useMemo(
     () => ({
       userId,
-      onUserData: handleUserData,
       onLogin: handleLogin,
       onLogout: handleLogout,
       onRegister: handleRegister

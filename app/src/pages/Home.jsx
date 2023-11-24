@@ -1,7 +1,6 @@
 import 'src/styles/PageHome.scss';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from 'src/hooks/useAuth';
+import { Link, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getNewestPosts } from 'src/api/Post';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -15,27 +14,7 @@ export default function Home() {
   const [page, setPage] = useState(0);
   const [quickPostContent, setQuickPostContent] = useState('');
 
-  const { userId, onUserData } = useAuth();
-  const [userProfileColor, setUserProfileColor] = useState('#ffffff');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (userId === null) {
-        return;
-      }
-
-      const userData = await onUserData();
-      const data = userData.data;
-
-      if (data === null) {
-        return;
-      }
-
-      setUserProfileColor(data.profileColor);
-    };
-
-    fetchData();
-  }, [userId]);
+  const userData = useRouteLoaderData('root').data;
 
   useEffect(() => {
     fetchPosts();
@@ -59,9 +38,9 @@ export default function Home() {
   
   return (
     <div className='home'>
-      {userId !== null && 
+      {userData !== null && 
         <div className='quick-post'>
-          <div className='avatar' style={{ backgroundColor: `#${userProfileColor}` }}></div>
+          <div className='avatar' style={{ backgroundColor: `#${userData.profileColor}` }}></div>
           <input 
             type='text'
             placeholder={t('home_quick_post_placeholder')}

@@ -1,15 +1,16 @@
 import './AppBar.scss';
 import { useTranslation } from 'react-i18next';
-import { createSearchParams, Link, useNavigate } from 'react-router-dom';
+import { createSearchParams, Link, useNavigate, useRouteLoaderData } from 'react-router-dom';
 import LanguageSwitcher from './LanguageSwitcher';
 import DarkModeToggle from './DarkModeToggle';
 import { useState } from 'react';
 import { TbSearch } from 'react-icons/tb';
 
-export default function AppBar({ userId, userProfileColor }) {
+export default function AppBar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const userData = useRouteLoaderData('root').data;
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -44,21 +45,21 @@ export default function AppBar({ userId, userProfileColor }) {
       <div className='appbar-options'>
         <DarkModeToggle />
         <LanguageSwitcher />
-        {userId === null &&
+        {userData === null &&
           <Link to='/login'>
             <button className='login-button'>
               {t('appbar_login')}
             </button>
           </Link>
         }
-        {userId !== null && 
+        {userData !== null && 
           <>
             <Link to='/logout'>
               <button className='login-button'>
                 {t('appbar_logout')}
               </button>
             </Link>
-            <div className='avatar' style={{ backgroundColor: `#${userProfileColor}` }}></div>
+            <div className='avatar' style={{ backgroundColor: `#${userData.profileColor}` }}></div>
           </>
         }
       </div>
