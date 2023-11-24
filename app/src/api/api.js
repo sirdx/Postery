@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { USER_ID_KEY } from 'src/components/providers/AuthProvider';
 
+export class ApiResponse {
+  constructor(errorDetails, data) {
+    this.errorDetails = errorDetails;
+    this.data = data;
+  }
+} 
+
 const api = axios.create({
   baseURL: '/api',
   withCredentials: true,

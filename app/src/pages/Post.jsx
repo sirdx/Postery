@@ -25,10 +25,10 @@ export default function Post() {
 
     const response = await getPost(id);
 
-    if (response.id !== undefined) {
-      setPost(response);
+    if (response.errorDetails === null) {
+      setPost(response.data);
     } else {
-      setError(response);
+      setError(response.errorDetails.message);
     }
 
     setIsLoading(false);

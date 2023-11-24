@@ -1,4 +1,4 @@
-import api from './api';
+import api, { ApiResponse } from './api';
 
 export async function login(nameOrEmail, password) {
   try {
@@ -7,13 +7,16 @@ export async function login(nameOrEmail, password) {
       password: password
     });
     
-    return data;
+    return new ApiResponse(null, data);
   } catch (error) {
     if (error.response.status === 401) {
-      return "Invalid credentials.";
+      return new ApiResponse({
+        error: "Unauthorized",
+        message: "Invalid credentials."
+      }, null);
     }
 
-    return "Unknown error. Try again later.";
+    return new ApiResponse(error.response.data, null);
   }
 }
 
@@ -41,8 +44,8 @@ export async function register(
       profileColor: profileColor
     });
   
-    return data;
+    return new ApiResponse(null, data);
   } catch (error) {
-    return "Unknown error. Try again later.";
+    return new ApiResponse(error.response.data, null);
   }
 }

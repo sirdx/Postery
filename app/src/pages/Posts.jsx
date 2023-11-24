@@ -25,16 +25,16 @@ export default function Posts() {
     setIsLoading(true);
     setError(null);
 
-    try {
-      const data = await searchPosts(query, page);
+    const response = await searchPosts(query, page);
 
-      setPosts([...prevPosts, ...data]);
+    if (response.errorDetails === null) {
+      setPosts([...prevPosts, ...response.data]);
       setPage(page + 1);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
+    } else {
+      setError(response.errorDetails.message);
     }
+
+    setIsLoading(false);
   };
 
   const fetchNextPosts = async () => {

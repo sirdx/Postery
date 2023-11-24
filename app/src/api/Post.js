@@ -1,32 +1,40 @@
-import api from './api';
+import api, { ApiResponse } from './api';
 
 export async function getPost(slug) {
   try {
     const { data } = await api.get(`/posts/${slug}`);
 
-    return data;
+    return new ApiResponse(null, data);
   } catch (error) {
-    return "Unknown error. Try again later.";
+    return new ApiResponse(error.response.data, null);
   }
 }
 
 export async function getNewestPosts(page) {
-  const { data } = await api.get('/posts/newest', {
-    params: { page: page }
-  });
+  try {
+    const { data } = await api.get('/posts/newest', {
+      params: { page: page }
+    });
 
-  return data;
+    return new ApiResponse(null, data);
+  } catch (error) {
+    return new ApiResponse(error.response.data, null);
+  }
 }
 
 export async function searchPosts(query, page) {
-  const { data } = await api.get('/posts/search', {
-    params: {
-      query: query,
-      page: page
-    }
-  });
+  try {
+    const { data } = await api.get('/posts/search', {
+      params: {
+        query: query,
+        page: page
+      }
+    });
 
-  return data;
+    return new ApiResponse(null, data);
+  } catch (error) {
+    return new ApiResponse(error.response.data, null);
+  }
 }
 
 export async function createPost(title, content) {
@@ -36,12 +44,15 @@ export async function createPost(title, content) {
       content: content
     });
     
-    return data;
+    return new ApiResponse(null, data);
   } catch (error) {
     if (error.response.status === 401) {
-      return "Unauthorized to create a post.";
+      return new ApiResponse({
+        error: "Unauthorized",
+        message: "Unauthorized to create a post."
+      }, null);
     }
 
-    return "Unknown error. Try again later.";
+    return new ApiResponse(error.response.data, null);
   }
 }

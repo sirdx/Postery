@@ -15,13 +15,14 @@ export default function AuthProvider({ children }) {
 
   const handleLogin = async (nameOrEmail, password) => {
     const response = await login(nameOrEmail, password);
+    const data = response.data;
 
-    if (response.id === undefined) {
+    if (data === null) {
       return response;
     }
 
-    setUserId(response.id);
-    return null;
+    setUserId(data.id);
+    return response;
   };
 
   const handleLogout = async () => {
@@ -37,13 +38,14 @@ export default function AuthProvider({ children }) {
     profileColor
   ) => {
     const response = await register(name, displayName, email, password, profileColor);
+    const data = response.data;
 
-    if (response.id === undefined) {
+    if (data === null) {
       return response;
     }
 
-    setUserId(response.id);
-    return null;
+    setUserId(data.id);
+    return response;
   };
 
   const contextValue = useMemo(

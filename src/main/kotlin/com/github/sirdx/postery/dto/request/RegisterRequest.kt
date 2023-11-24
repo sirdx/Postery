@@ -14,7 +14,7 @@ data class RegisterRequest(
     @field:Size(min = 3, max = 30, message = "Name must be from 3 to 30 characters long")
     val displayName: String,
 
-    @field:Email(message = "Email is invalid")
+    @field:Email(message = "Email is invalid", regexp = "^\\S+@\\S+\$")
     val email: String,
 
     @field:NotBlank(message = "Password is blank")

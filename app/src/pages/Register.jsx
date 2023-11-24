@@ -38,10 +38,10 @@ export default function Register() {
     );
     setSigningUp(false);
 
-    if (response === null) {
+    if (response.errorDetails === null) {
       navigate('/', { replace: true });
     } else {
-      setApiError(response);
+      setApiError(response.errorDetails.message);
     }
   };
   

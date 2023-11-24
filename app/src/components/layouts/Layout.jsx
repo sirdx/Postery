@@ -17,9 +17,15 @@ export default function Layout() {
       }
 
       const userData = await onUserData();
-      setUserName(userData.name);
-      setUserDisplayName(userData.displayName);
-      setUserProfileColor(userData.profileColor);
+      const data = userData.data;
+
+      if (data === null) {
+        return;
+      }
+
+      setUserName(data.name);
+      setUserDisplayName(data.displayName);
+      setUserProfileColor(data.profileColor);
     };
 
     fetchData();

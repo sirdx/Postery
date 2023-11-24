@@ -25,7 +25,13 @@ export default function Home() {
       }
 
       const userData = await onUserData();
-      setUserProfileColor(userData.profileColor);
+      const data = userData.data;
+
+      if (data === null) {
+        return;
+      }
+
+      setUserProfileColor(data.profileColor);
     };
 
     fetchData();
@@ -39,16 +45,16 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
 
-    try {
-      const data = await getNewestPosts(page);
+    const response = await getNewestPosts(page);
 
-      setPosts(prevPosts => [...prevPosts, ...data]);
+    if (response.data === null) {
+      setError(response.errorDetails.message);
+    } else {
+      setPosts(prevPosts => [...prevPosts, ...response.data]);
       setPage(prevPage => prevPage + 1);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
     }
+
+    setIsLoading(false);
   };
   
   return (

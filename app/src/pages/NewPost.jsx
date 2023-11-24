@@ -35,10 +35,10 @@ export default function NewPost() {
     );
     setPosting(false);
 
-    if (response.id !== undefined) {
-      navigate(`/post/${response.slug}`, { replace: true });
+    if (response.errorDetails === null) {
+      navigate(`/post/${response.data.slug}`, { replace: true });
     } else {
-      setApiError(response);
+      setApiError(response.errorDetails.message);
     }
   };
 

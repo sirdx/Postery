@@ -29,7 +29,7 @@ class AuthService(
         registerRequest: RegisterRequest,
         request: HttpServletRequest,
         response: HttpServletResponse
-    ): User {
+    ): User? {
         val email = registerRequest.email.trim()
         val displayName = registerRequest.displayName.trim()
         val name = registerRequest.name.trim()
@@ -39,7 +39,7 @@ class AuthService(
         val exists = userRepository.findByNameOrEmail(name, email)
 
         if (exists.isPresent)  {
-            throw IllegalStateException("User already exists")
+            return null
         }
 
         val user = User(

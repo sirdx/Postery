@@ -4,6 +4,7 @@ import com.github.sirdx.postery.dto.request.AuthenticationRequest
 import com.github.sirdx.postery.dto.request.RegisterRequest
 import com.github.sirdx.postery.dto.response.UserResponse
 import com.github.sirdx.postery.service.AuthService
+import com.github.sirdx.postery.util.ErrorDetails
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import jakarta.validation.Valid
@@ -25,8 +26,10 @@ class AuthController(
         @RequestBody @Valid registerRequest: RegisterRequest,
         request: HttpServletRequest,
         response: HttpServletResponse
-    ): ResponseEntity<UserResponse> {
-        val registeredUser = authService.register(registerRequest, request, response)
+    ): ResponseEntity<Any> {
+        val registeredUser = authService.register(registerRequest, request, response) ?:
+            return ResponseEntity.badRequest().body(ErrorDetails("Registration Error", "User already exists"))
+
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser.toResponse())
     }
 
