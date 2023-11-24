@@ -2,9 +2,43 @@
   "nav_home": "Strona główna",
   "nav_posts": "Posty",
 
-  "home_title": "Strona główna",
-  "home_users": "Ostatnio aktywni",
-  "home_no_posts": "Brak postów do wyświetlenia.",
-  "home_newest_posts": "Najnowsze posty",
-  "home_best_posts": "Najlepsze posty"
+  "appbar_search": "Szukaj postów",
+  "appbar_login": "Zaloguj Się",
+  "appbar_logout": "Wyloguj Się",
+
+  "dark_mode_toggle_title": "Przełącz tryb ciemny",
+
+  "post_preview_comments": "Wyświetl {{count}} komentarzy",
+
+  "main_layout_create_post": "Stwórz Post",
+  "main_layout_users": "Użytkownicy",
+
+  "home_quick_post_placeholder": "Napisz szybki post...",
+  "home_quick_post_submit": "Post",
+
+  "login_title": "Zaloguj się",
+  "login_description": "Zaloguj się danymi wprowadzonymi\npodczas rejestracji",
+  "login_name_or_email_placeholder": "Nazwa lub email",
+  "login_password_placeholder": "Hasło",
+  "login_submit": "Zaloguj Się",
+  "login_sign_up_incentive": "Nie masz konta?",
+  "login_sign_up": "Zarejestruj się",
+
+  "new_post_header": "Stwórz nowy post",
+  "new_post_title_placeholder": "Tytuł",
+  "new_post_content_placeholder": "Zawartość",
+  "new_post_submit": "Stwórz",
+
+  "posts_search_results": "Wyniki wyszukiwania",
+  
+  "register_title": "Zarejestruj się",
+  "register_description": "Stwórz nowe konto Postery",
+  "register_name_placeholder": "Nazwa",
+  "register_display_name_placeholder": "Wyświetlana nazwa",
+  "register_email_placeholder": "Email",
+  "register_password_placeholder": "Hasło",
+  "register_profile_color": "Kolor profilu:",
+  "register_submit": "Zarejestruj Się",
+  "register_sign_in_incentive": "Masz już konto?",
+  "register_sign_in": "Zaloguj się"
 }

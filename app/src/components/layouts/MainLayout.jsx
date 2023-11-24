@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { useAuth } from 'src/hooks/useAuth';
 import { useEffect, useState } from 'react';
 import Sidebar from '../sidebar/SideBar';
+import { useTranslation } from 'react-i18next';
 
 export default function MainLayout() {
+  const { t } = useTranslation();
   const { userId, onUserData } = useAuth();
   const [userName, setUserName] = useState('');
   const [userDisplayName, setUserDisplayName] = useState('');
@@ -26,10 +28,6 @@ export default function MainLayout() {
     fetchData();
   }, [userId]);
 
-  const handleCreatePost = () => {
-
-  };
-
   return (
     <div className='main-layout'>
       <aside className='home-left'>
@@ -46,7 +44,7 @@ export default function MainLayout() {
         {userId !== null &&
           <Link to='/new-post'>
             <button className='create-post'>
-              Create Post
+              {t('main_layout_create_post')}
             </button>
           </Link>
         }
@@ -56,8 +54,9 @@ export default function MainLayout() {
       </main>
       <aside className='home-right'>
         <div className='users-list'>
-          <span className='title'>Users</span>
-          
+          <span className='title'>
+            {t('main_layout_users')}
+          </span>
         </div>
       </aside>
     </div>

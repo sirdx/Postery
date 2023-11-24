@@ -1,10 +1,12 @@
 import './PostPreview.scss';
 import { formatDistance } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+import { useTranslation } from 'react-i18next';
 import { TbLineDashed } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
 export default function PostPreview({ post }) {
+  const { t } = useTranslation();
   const createdAt = Date.parse(post.createdAt);
   const postUrl = `/post/${post.id}`;
 
@@ -27,7 +29,11 @@ export default function PostPreview({ post }) {
         <p>{post.content}</p>
       </div>
       <div className='stats'>
-        <Link to={postUrl}><p>View 296 comments</p></Link>
+        <Link to={postUrl}>
+          <p>
+            {t('post_preview_comments', { count: '296' })}
+          </p>
+        </Link>
       </div>
     </li>
   );

@@ -35,7 +35,7 @@ export default function AppBar({ userId, userProfileColor }) {
         <TbSearch className='search-icon' />
         <input 
           type='text' 
-          placeholder='Search for posts'
+          placeholder={t('appbar_search')}
           value={searchQuery}
           onChange={handleSearchInputChange}
           onKeyDown={(e) => e.key === 'Enter' ? handleSearch() : ''}
@@ -47,7 +47,7 @@ export default function AppBar({ userId, userProfileColor }) {
         {userId === null &&
           <Link to='/login'>
             <button className='login-button'>
-              Log in
+              {t('appbar_login')}
             </button>
           </Link>
         }
@@ -55,7 +55,7 @@ export default function AppBar({ userId, userProfileColor }) {
           <>
             <Link to='/logout'>
               <button className='login-button'>
-                Log out
+                {t('appbar_logout')}
               </button>
             </Link>
             <div className='avatar' style={{ backgroundColor: `#${userProfileColor}` }}></div>

@@ -3,8 +3,10 @@ import { searchPosts } from 'src/api/Post';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PostPreview from 'src/components/home/PostPreview';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Posts() {
+  const { t } = useTranslation();
   const location = useLocation();
 
   const [posts, setPosts] = useState([]);
@@ -41,7 +43,7 @@ export default function Posts() {
 
   return (
     <>
-      <h1>Posts</h1>
+      <h1>{t('posts_search_results')}</h1>
 
       <InfiniteScroll
         dataLength={posts.length}

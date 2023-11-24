@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object({
   name: yup.string().required().min(3).max(16),
@@ -15,6 +16,7 @@ const schema = yup.object({
 }).required();
 
 export default function Register() {
+  const { t } = useTranslation();
   const { onRegister } = useAuth();
   const navigate = useNavigate();
   const [signingUp, setSigningUp] = useState(false);
@@ -23,12 +25,6 @@ export default function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
-
-  const [name, setName] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [profileColor, setProfileColor] = useState("#ffffff");
 
   const onSubmit = async data => {
     setApiError(null);
@@ -56,15 +52,17 @@ export default function Register() {
           <h1>Postery</h1>
         </div>
         <div className='column col-right'>
-          <h2>Sign up</h2>
-          <p className='register-description'>Create a new Postery account</p>
+          <h2>{t('register_title')}</h2>
+          <p className='register-description'>
+            {t('register_description')}
+          </p>
           <form 
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className='form-block'>
               <input 
                 type='text'
-                placeholder='Name'
+                placeholder={t('register_name_placeholder')}
                 className={errors.name && 'error'}
                 {...register('name')}
               />
@@ -73,7 +71,7 @@ export default function Register() {
             <div className='form-block'>
               <input 
                 type='text'
-                placeholder='Display name'
+                placeholder={t('register_display_name_placeholder')}
                 className={errors.displayName && 'error'}
                 {...register('displayName')}
               />
@@ -82,7 +80,7 @@ export default function Register() {
             <div className='form-block'>
               <input 
                 type='email'
-                placeholder='Email'
+                placeholder={t('register_email_placeholder')}
                 className={errors.email && 'error'}
                 {...register('email')}
               />
@@ -91,7 +89,7 @@ export default function Register() {
             <div className='form-block'>
               <input 
                 type='password'
-                placeholder='Password'
+                placeholder={t('register_password_placeholder')}
                 className={errors.password && 'error'}
                 {...register('password')}
               />
@@ -99,7 +97,7 @@ export default function Register() {
             </div>
             <div className='form-block'>
               <div className='label-block'>
-                <label>Profile color:</label>
+                <label>{t('register_profile_color')}</label>
                 <input 
                   type='color'
                   className={errors.profileColor && 'error'}
@@ -109,12 +107,14 @@ export default function Register() {
             </div>
             <input 
               type='submit' 
-              value='Sign up'
+              value={t('register_submit')}
               disabled={signingUp}
             />
             <p className='error-message'>{apiError}</p>
           </form>
-          <p className='sign-in'>Already have an account? <Link to='/login'>Sign in</Link></p>
+          <p className='sign-in'>
+            {t('register_sign_in_incentive')} <Link to='/login'>{t('register_sign_in')}</Link>
+          </p>
         </div>
       </div>
     </div>

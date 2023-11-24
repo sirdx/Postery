@@ -2,9 +2,43 @@
   "nav_home": "Home",
   "nav_posts": "Posts",
 
-  "home_title": "Home",
-  "home_users": "Recent active",
-  "home_no_posts": "No posts to display.",
-  "home_newest_posts": "Newest posts",
-  "home_best_posts": "Best posts"
+  "appbar_search": "Search for posts",
+  "appbar_login": "Log In",
+  "appbar_logout": "Log Out",
+
+  "dark_mode_toggle_title": "Toggle dark mode",
+
+  "post_preview_comments": "View {{count}} comments",
+
+  "main_layout_create_post": "Create Post",
+  "main_layout_users": "Users",
+
+  "home_quick_post_placeholder": "Write a quick post...",
+  "home_quick_post_submit": "Post",
+
+  "login_title": "Sign in",
+  "login_description": "Log in with the data that you entered\nduring the registration",
+  "login_name_or_email_placeholder": "Name or email",
+  "login_password_placeholder": "Password",
+  "login_submit": "Sign In",
+  "login_sign_up_incentive": "Don't have an account?",
+  "login_sign_up": "Sign up",
+
+  "new_post_header": "Create a post",
+  "new_post_title_placeholder": "Title",
+  "new_post_content_placeholder": "Content",
+  "new_post_submit": "Create",
+
+  "posts_search_results": "Search results",
+  
+  "register_title": "Sign up",
+  "register_description": "Create a new Postery account",
+  "register_name_placeholder": "Name",
+  "register_display_name_placeholder": "Display name",
+  "register_email_placeholder": "Email",
+  "register_password_placeholder": "Password",
+  "register_profile_color": "Profile color:",
+  "register_submit": "Sign Up",
+  "register_sign_in_incentive": "Already have an account?",
+  "register_sign_in": "Sign in"
 }

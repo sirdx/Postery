@@ -1,10 +1,11 @@
 import 'src/styles/PageNewPost.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { createPost } from 'src/api/Post';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object({
   title: yup.string().required().min(8).max(255),
@@ -12,12 +13,17 @@ const schema = yup.object({
 }).required();
 
 export default function NewPost() {
+  const { t } = useTranslation();
+  const { content } = useParams();
   const navigate = useNavigate();
   const [posting, setPosting] = useState(false);
   const [apiError, setApiError] = useState(null);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    defaultValues: {
+      content: content
+    }
   });
 
   const onSubmit = async data => {
@@ -40,7 +46,7 @@ export default function NewPost() {
     <div className='new-post-page'>
       <div className='new-post-form'>
         <div>
-          <h1>Create a post</h1>
+          <h1>{t('new_post_header')}</h1>
         </div>
         <form 
           onSubmit={handleSubmit(onSubmit)}
@@ -48,7 +54,7 @@ export default function NewPost() {
           <div className='form-block'>
             <input 
               type='text'
-              placeholder='Title'
+              placeholder={t('new_post_title_placeholder')}
               className={errors.title && 'error'}
               {...register('title')}
             />
@@ -57,7 +63,7 @@ export default function NewPost() {
           <div className='form-block content'>
             <textarea 
               type='text'
-              placeholder='Content'
+              placeholder={t('new_post_content_placeholder')}
               className={errors.content && 'error'}
               {...register('content')}
             />
@@ -67,7 +73,7 @@ export default function NewPost() {
           <input 
             type='submit'
             className='create'
-            value='Create'
+            value={t('new_post_submit')}
             disabled={posting}
           />
         </form>     

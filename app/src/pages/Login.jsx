@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object({
   nameOrEmail: yup.string().required().min(3),
@@ -12,6 +13,7 @@ const schema = yup.object({
 }).required();
 
 export default function Login() {
+  const { t } = useTranslation();
   const { onLogin } = useAuth();
   const navigate = useNavigate();
   const [loggingIn, setLoggingIn] = useState(false);
@@ -44,15 +46,17 @@ export default function Login() {
           <h1>Postery</h1>
         </div>
         <div className='column col-right'>
-          <h2>Sign in</h2>
-          <p className='login-description'>Log in with the data that you entered<br></br>during the registration</p>
+          <h2>{t('login_title')}</h2>
+          <p className='login-description'>
+            {t('login_description')}
+          </p>
           <form 
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className='form-block'>
               <input 
                 type='text'
-                placeholder='Name or email'
+                placeholder={t('login_name_or_email_placeholder')}
                 className={errors.nameOrEmail && 'error'}
                 {...register('nameOrEmail')}
               />
@@ -61,7 +65,7 @@ export default function Login() {
             <div className='form-block'>
               <input 
                 type='password'
-                placeholder='Password'
+                placeholder={t('login_password_placeholder')}
                 className={errors.password && 'error'}
                 {...register('password')}
               />
@@ -69,12 +73,14 @@ export default function Login() {
             </div>
             <input 
               type='submit' 
-              value='Sign in'
+              value={t('login_submit')}
               disabled={loggingIn}
             />
             <p className='error-message'>{apiError}</p>
           </form>
-          <p className='sign-up'>Don't have an account? <Link to='/register'>Sign up</Link></p>
+          <p className='sign-up'>
+            {t('login_sign_up_incentive')} <Link to='/register'>{t('login_sign_up')}</Link>
+          </p>
         </div>
       </div>
     </div>

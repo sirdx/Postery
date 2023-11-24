@@ -9,6 +9,7 @@ import Posts from 'src/pages/Posts';
 import NewPost from 'src/pages/NewPost';
 import Register from 'src/pages/Register';
 import Post from 'src/pages/Post';
+import NotFound from 'src/pages/NotFound';
 
 export default function Routes() {
   const router = createBrowserRouter([
@@ -42,7 +43,7 @@ export default function Routes() {
               element: <Logout />
             },
             {
-              path: 'new-post',
+              path: 'new-post/:content?',
               element: <NewPost />
             }
           ]
@@ -56,6 +57,15 @@ export default function Routes() {
     {
       path: '/register',
       element: <Register />
+    },
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: '*',
+          element: <NotFound />
+        }
+      ]
     }
   ]);
 
