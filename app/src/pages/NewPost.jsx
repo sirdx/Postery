@@ -30,7 +30,7 @@ export default function NewPost() {
     setPosting(false);
 
     if (response.id !== undefined) {
-      navigate(`/posts/${response.id}`, { replace: true });
+      navigate(`/post/${response.id}`, { replace: true });
     } else {
       setApiError(response);
     }

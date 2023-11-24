@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
 import 'src/styles/PageHome.scss';
+import { useEffect, useState } from 'react';
+import { useAuth } from 'src/hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { getNewestPosts } from 'src/api/Post';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -11,6 +12,22 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(0);
+
+  const { userId, onUserData } = useAuth();
+  const [userProfileColor, setUserProfileColor] = useState('#ffffff');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (userId === null) {
+        return;
+      }
+
+      const userData = await onUserData();
+      setUserProfileColor(userData.profileColor);
+    };
+
+    fetchData();
+  }, [userId]);
 
   useEffect(() => {
     fetchPosts();
@@ -35,7 +52,7 @@ export default function Home() {
   return (
     <div className='home'>
       <div className='quick-post'>
-        <div className='avatar'></div>
+        <div className='avatar' style={{ backgroundColor: `#${userProfileColor}` }}></div>
         <input 
           type='text'
           placeholder='Write a quick post...'

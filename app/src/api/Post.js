@@ -1,5 +1,15 @@
 import api from './api';
 
+export async function getPost(id) {
+  try {
+    const { data } = await api.get(`/posts/${id}`);
+
+    return data;
+  } catch (error) {
+    return "Unknown error. Try again later.";
+  }
+}
+
 export async function getNewestPosts(page) {
   const { data } = await api.get('/posts/newest', {
     params: { page: page }

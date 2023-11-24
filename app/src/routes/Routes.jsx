@@ -8,6 +8,7 @@ import MainLayout from 'src/components/layouts/MainLayout';
 import Posts from 'src/pages/Posts';
 import NewPost from 'src/pages/NewPost';
 import Register from 'src/pages/Register';
+import Post from 'src/pages/Post';
 
 export default function Routes() {
   const router = createBrowserRouter([
@@ -25,6 +26,10 @@ export default function Routes() {
             {
               path: '/posts',
               element: <Posts />
+            },
+            {
+              path: '/post/:id',
+              element: <Post />
             }
           ]
         },
