@@ -3,7 +3,6 @@ package com.github.sirdx.postery.model
 import com.github.sirdx.postery.dto.response.PostResponse
 import com.github.sirdx.postery.util.toSlug
 import jakarta.persistence.*
-import jakarta.validation.constraints.NotBlank
 import java.time.Instant
 
 typealias PostId = Long
@@ -25,6 +24,8 @@ data class Post(
     val content: String,
 
     val createdAt: Instant = Instant.now(),
+
+    val modifiedAt: Instant = createdAt,
 
     val slug: String = title.toSlug()
 ) {
