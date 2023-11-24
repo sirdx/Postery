@@ -5,7 +5,6 @@ import { getPost } from "src/api/Post";
 import { formatDistance } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { TbLineDashed } from 'react-icons/tb';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function Post() {

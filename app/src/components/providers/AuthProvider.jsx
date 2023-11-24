@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { login, logout, register } from 'src/api/Auth';
-import { getUser } from 'src/api/User';
 import { AuthContext } from 'src/hooks/useAuth';
 import { useLocalStorage } from 'src/hooks/useLocalStorage';
 
