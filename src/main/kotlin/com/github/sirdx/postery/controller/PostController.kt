@@ -57,9 +57,9 @@ class PostController(
         return posts.map { it.toResponse() }
     }
 
-    @GetMapping("/{id}")
-    fun getPost(@PathVariable id: PostId): ResponseEntity<PostResponse> {
-        val post = postRepository.findByIdOrNull(id) ?: return ResponseEntity.notFound().build()
+    @GetMapping("/{slug}")
+    fun getPost(@PathVariable slug: String): ResponseEntity<PostResponse> {
+        val post = postRepository.findBySlug(slug).getOrNull() ?: return ResponseEntity.notFound().build()
         return ResponseEntity.ok(post.toResponse())
     }
 
@@ -74,9 +74,15 @@ class PostController(
             content = post.content
         ))
 
+        val updatedPost = postRepository.save(
+            savedPost.copy(
+                slug = "${savedPost.slug}-${savedPost.id}"
+            )
+        )
+
         return ResponseEntity.created(
-            URI.create("/api/posts/" + savedPost.id)
-        ).body(savedPost.toResponse())
+            URI.create("/api/posts/" + updatedPost.slug)
+        ).body(updatedPost.toResponse())
     }
 
     @PutMapping("/{id}")

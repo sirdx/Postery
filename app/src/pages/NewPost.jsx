@@ -36,7 +36,7 @@ export default function NewPost() {
     setPosting(false);
 
     if (response.id !== undefined) {
-      navigate(`/post/${response.id}`, { replace: true });
+      navigate(`/post/${response.slug}`, { replace: true });
     } else {
       setApiError(response);
     }

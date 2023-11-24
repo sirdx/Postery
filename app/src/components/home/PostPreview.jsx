@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export default function PostPreview({ post }) {
   const { t } = useTranslation();
   const createdAt = Date.parse(post.createdAt);
-  const postUrl = `/post/${post.id}`;
+  const postUrl = `/post/${post.slug}`;
 
   return (
     <li className='post-preview'>

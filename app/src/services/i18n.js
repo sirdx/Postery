@@ -6,7 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import {
   defaultLanguage,
   supportedLanguages,
-} from "src/config/i18n";
+} from 'src/config/i18n';
 
 i18next
   .use(initReactI18next)

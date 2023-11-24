@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
+import java.util.*
 
 interface PostRepository : JpaRepository<Post, PostId> {
 
@@ -15,4 +16,6 @@ interface PostRepository : JpaRepository<Post, PostId> {
         nativeQuery = true
     )
     fun search(query: String, pageable: Pageable): Page<Post>
+
+    fun findBySlug(slug: String): Optional<Post>
 }

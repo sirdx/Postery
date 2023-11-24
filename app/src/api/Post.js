@@ -1,8 +1,8 @@
 import api from './api';
 
-export async function getPost(id) {
+export async function getPost(slug) {
   try {
-    const { data } = await api.get(`/posts/${id}`);
+    const { data } = await api.get(`/posts/${slug}`);
 
     return data;
   } catch (error) {
