@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_ID_KEY } from 'src/components/providers/AuthProvider';
+import { USER_ID_KEY } from 'src/components/atoms/AuthProvider';
 
 export class ApiResponse {
   constructor(errorDetails, data) {

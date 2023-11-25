@@ -1,9 +1,0 @@
-@import 'src/styles/theme.scss';
-
-.sidebar {
-  margin-bottom: 20px;
-
-  @include themify() {
-    background-color: #ffffff;
-  }
-}

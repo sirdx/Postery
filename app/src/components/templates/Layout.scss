@@ -1,0 +1,12 @@
+@use 'src/styles/_theme.scss' as *;
+
+.layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color ease-in-out .2s;
+
+  @include themify() {
+    background-color: themed('body-background');
+  }
+}

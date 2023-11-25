@@ -1,17 +1,17 @@
-import ProtectedRoute from './ProtectedRoute';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Logout from 'src/pages/Logout';
-import Login from 'src/pages/Login';
-import Home from 'src/pages/Home';
-import Layout from 'src/components/layouts/Layout';
-import MainLayout from 'src/components/layouts/MainLayout';
-import Posts from 'src/pages/Posts';
-import NewPost from 'src/pages/NewPost';
-import Register from 'src/pages/Register';
-import Post from 'src/pages/Post';
-import NotFound from 'src/pages/NotFound';
 import { getUser } from 'src/api/User';
-import { useAuth } from 'src/hooks/useAuth';
+import { useAuth } from 'src/utils/hooks/useAuth';
+import ProtectedRoute from './ProtectedRoute';
+import Layout from 'src/components/templates/Layout';
+import MainLayout from 'src/components/templates/MainLayout';
+import Home from 'src/pages/home/Home';
+import Login from 'src/pages/login/Login';
+import Logout from 'src/pages/logout/Logout';
+import NewPost from 'src/pages/new-post/NewPost';
+import NotFound from 'src/pages/not-found/NotFound';
+import Post from 'src/pages/post/Post';
+import Posts from 'src/pages/posts/Posts';
+import Register from 'src/pages/register/Register';
 
 export default function Routes() {
   const { userId } = useAuth();
