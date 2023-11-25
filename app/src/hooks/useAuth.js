@@ -1,13 +1,5 @@
-import { createContext, useContext } from 'react';
-
-const initialAuthState = {
-  userId: null,
-  onLogin: async (nameOrEmail, password) => null,
-  onLogout: async () => null,
-  onRegister: async (name, displayName, email, password, profileColor) => null
-};
-
-export const AuthContext = createContext(initialAuthState);
+import { useContext } from 'react';
+import AuthContext from 'src/contexts/AuthContext';
 
 export function useAuth() {
   return useContext(AuthContext);
