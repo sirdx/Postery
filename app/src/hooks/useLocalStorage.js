@@ -5,10 +5,11 @@ export function useLocalStorage(key, defaultValue) {
     try {
       const value = localStorage.getItem(key);
       
-      if (value) {
+      if (value != null) {
         return JSON.parse(value);
       } else {
         localStorage.setItem(key, JSON.stringify(defaultValue));
+        return defaultValue;
       }
     } catch (error) {
       return defaultValue;
@@ -17,7 +18,7 @@ export function useLocalStorage(key, defaultValue) {
 
   const setValue = (newValue) => {
     try {
-      if (newValue === null) {
+      if (newValue == null) {
         localStorage.removeItem(key);
       } else {
         localStorage.setItem(key, JSON.stringify(newValue));

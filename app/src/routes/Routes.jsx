@@ -44,7 +44,7 @@ export default function Routes() {
             },
             {
               path: '/',
-              element: <ProtectedRoute />,
+              element: <ProtectedRoute isAuth target='/login' />,
               children: [
                 {
                   path: 'logout',
@@ -59,12 +59,17 @@ export default function Routes() {
           ]
         },
         {
-          path: '/login',
-          element: <Login />
-        },
-        {
-          path: '/register',
-          element: <Register />
+          element: <ProtectedRoute target='/' />,
+          children: [
+            {
+              path: '/login',
+              element: <Login />
+            },
+            {
+              path: '/register',
+              element: <Register />
+            },
+          ]
         },
         {
           element: <Layout />,

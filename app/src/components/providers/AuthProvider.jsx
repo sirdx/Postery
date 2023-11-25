@@ -45,7 +45,7 @@ export default function AuthProvider({ children }) {
 
   const contextValue = useMemo(
     () => ({
-      userId,
+      userId: userId,
       onLogin: handleLogin,
       onLogout: handleLogout,
       onRegister: handleRegister
