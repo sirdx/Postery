@@ -1,7 +1,7 @@
 import { Link, Outlet, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './MainLayout.scss';
-import Sidebar from 'src/components/molecules/Sidebar';
+import Sidebar from 'src/components/organisms/Sidebar';
 
 export default function MainLayout() {
   const { t } = useTranslation();

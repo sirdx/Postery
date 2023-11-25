@@ -1,6 +1,6 @@
 @use 'src/styles/_theme.scss' as *;
 
-.appbar {
+.header {
   padding: 15px 40px;
   display: grid;
   grid-auto-flow: column;
@@ -11,7 +11,7 @@
     background-color: #ffffff;
   }
 
-  .appbar-brand {
+  .header-brand {
     align-self: center;
 
     a {
@@ -26,7 +26,7 @@
     }
   }
 
-  .appbar-search {
+  .header-search {
     display: flex;
     background-color: #efefef;
 
@@ -48,7 +48,7 @@
     }
   }
 
-  .appbar-options {
+  .header-options {
     display: flex;
     flex-direction: row;
     justify-self: end;

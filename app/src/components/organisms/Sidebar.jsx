@@ -1,6 +1,6 @@
 import { TbHome } from 'react-icons/tb';
 import './Sidebar.scss';
-import SidebarTab from 'src/components/atoms/SidebarTab';
+import SidebarTab from 'src/components/molecules/SidebarTab';
 
 export default function Sidebar() {
   return (

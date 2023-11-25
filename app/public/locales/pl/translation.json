@@ -2,9 +2,9 @@
   "nav_home": "Strona główna",
   "nav_posts": "Posty",
 
-  "appbar_search": "Szukaj postów",
-  "appbar_login": "Zaloguj Się",
-  "appbar_logout": "Wyloguj Się",
+  "header_search": "Szukaj postów",
+  "header_login": "Zaloguj Się",
+  "header_logout": "Wyloguj Się",
 
   "dark_mode_toggle_title": "Przełącz tryb ciemny",
 

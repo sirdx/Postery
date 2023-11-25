@@ -8,7 +8,7 @@ export default function SidebarTab({ to, name, icon }) {
 
   return (
     <Link to={to}>
-      <div className='tab' active={location.pathname === to ? 1 : 0}>
+      <div className={`tab ${location.pathname === to ? 'active' : ''}`}>
         <div className='content'>
           <span className='icon'>{icon}</span>
           <span className='link'>{t(name)}</span>

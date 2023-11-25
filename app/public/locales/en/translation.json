@@ -2,9 +2,9 @@
   "nav_home": "Home",
   "nav_posts": "Posts",
 
-  "appbar_search": "Search for posts",
-  "appbar_login": "Log In",
-  "appbar_logout": "Log Out",
+  "header_search": "Search for posts",
+  "header_login": "Log In",
+  "header_logout": "Log Out",
 
   "dark_mode_toggle_title": "Toggle dark mode",
 

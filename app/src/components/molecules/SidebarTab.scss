@@ -8,7 +8,7 @@
     display: flex;
     cursor: pointer;
     
-    &[active='1'] {
+    &.active {
       background-color: #eaeaea;
 
       .content {

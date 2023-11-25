@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import './Layout.scss';
-import AppBar from 'src/components/organisms/AppBar';
+import Header from 'src/components/organisms/Header';
 
 export default function Layout() {
   return (
     <div className='layout'>
-      <AppBar />
+      <Header />
       <Outlet />
     </div>
   );
