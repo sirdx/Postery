@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import './NewPost.scss';
+import styles from './NewPost.module.scss';
 import { createPost } from 'src/api/Post';
 
 const schema = yup.object({
@@ -43,36 +43,36 @@ export default function NewPost() {
   };
 
   return (
-    <div className='new-post-page'>
-      <div className='new-post-form'>
+    <div className={styles.newPostPage}>
+      <div className={styles.newPostForm}>
         <div>
           <h1>{t('new_post_header')}</h1>
         </div>
         <form 
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className='form-block'>
+          <div className={styles.formBlock}>
             <input 
               type='text'
               placeholder={t('new_post_title_placeholder')}
               className={errors.title && 'error'}
               {...register('title')}
             />
-            <p className='error-message'>{errors.title?.message}</p>
+            <p className={styles.errorMessage}>{errors.title?.message}</p>
           </div>
-          <div className='form-block content'>
+          <div className={`${styles.formBlock} ${styles.content}`}>
             <textarea 
               type='text'
               placeholder={t('new_post_content_placeholder')}
               className={errors.content && 'error'}
               {...register('content')}
             />
-            <p className='error-message'>{errors.content?.message}</p>
+            <p className={styles.errorMessage}>{errors.content?.message}</p>
           </div>
-          <p className='error-message'>{apiError}</p>
+          <p className={styles.errorMessage}>{apiError}</p>
           <input 
             type='submit'
-            className='create'
+            className={styles.create}
             value={t('new_post_submit')}
             disabled={posting}
           />

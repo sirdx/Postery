@@ -13,5 +13,17 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:8080'
     }
+  },
+  css: {
+    modules: {
+      localsConvention: 'camelCaseOnly'
+    },
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use 'src/styles/theme' as *;
+        `
+      }
+    }
   }
 })

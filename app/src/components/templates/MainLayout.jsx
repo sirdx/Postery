@@ -1,6 +1,6 @@
 import { Link, Outlet, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import './MainLayout.scss';
+import styles from './MainLayout.module.scss';
 import Sidebar from 'src/components/organisms/Sidebar';
 
 export default function MainLayout() {
@@ -8,21 +8,21 @@ export default function MainLayout() {
   const userData = useRouteLoaderData('root').data;
 
   return (
-    <div className='main-layout'>
-      <aside className='home-left'>
+    <div className={styles.mainLayout}>
+      <aside className={styles.homeLeft}>
         {userData !== null &&
-          <div className='user-badge'>
-            <div className='avatar' style={{ backgroundColor: `#${userData.profileColor}` }}></div>
-            <div className='names'>
-              <span className='display-name'>{userData.displayName}</span>
-              <span className='username'>{userData.name}</span>
+          <div className={styles.userBadge}>
+            <div className={styles.avatar} style={{ backgroundColor: `#${userData.profileColor}` }}></div>
+            <div className={styles.names}>
+              <span className={styles.displayName}>{userData.displayName}</span>
+              <span className={styles.username}>{userData.name}</span>
             </div>
           </div>
         }    
         <Sidebar />
         {userData !== null &&
           <Link to='/new-post'>
-            <button className='create-post'>
+            <button className={styles.createPost}>
               {t('main_layout_create_post')}
             </button>
           </Link>
@@ -31,9 +31,9 @@ export default function MainLayout() {
       <main id='main'>
         <Outlet />
       </main>
-      <aside className='home-right'>
-        <div className='users-list'>
-          <span className='title'>
+      <aside className={styles.homeRight}>
+        <div className={styles.usersList}>
+          <span className={styles.title}>
             {t('main_layout_users')}
           </span>
         </div>

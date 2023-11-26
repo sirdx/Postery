@@ -1,0 +1,63 @@
+.sidebarTab {
+  height: 60px;
+  display: flex;
+  text-decoration: none;
+  cursor: pointer;
+
+  @include themify() {
+    background-color: themed('surface');
+  }
+
+  &.active {
+    @include themify() {
+      background-color: themed('surface-variant');
+    }
+
+    .content {
+      margin-left: -5px;
+
+      @include themify() {
+        color: themed('primary');
+
+        .icon>svg {
+          color: themed('primary');
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      width: 5px;
+      height: 100%;
+
+      @include themify() {
+        background-color: themed('primary');
+      }
+    }
+  }
+
+  .content {
+    padding: 15px 0 15px 30px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    
+    @include themify() {
+      color: themed('on-background');
+    }
+
+    .icon {
+      display: flex;
+
+      svg {
+        width: 25px;
+        height: 25px;
+        margin-right: 15px;
+
+        @include themify() {
+          color: themed('on-background');
+        }
+      }
+    }
+  }
+}

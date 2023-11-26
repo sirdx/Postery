@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import './Home.scss';
+import styles from './Home.module.scss';
 import { getNewestPosts } from 'src/api/Post';
 import PostPreview from 'src/components/organisms/PostPreview';
 
@@ -37,10 +37,10 @@ export default function Home() {
   };
   
   return (
-    <div className='home'>
+    <div className={styles.home}>
       {userData !== null && 
-        <div className='quick-post'>
-          <div className='avatar' style={{ backgroundColor: `#${userData.profileColor}` }}></div>
+        <div className={styles.quickPost}>
+          <div className={styles.avatar} style={{ backgroundColor: `#${userData.profileColor}` }}></div>
           <input 
             type='text'
             placeholder={t('home_quick_post_placeholder')}
@@ -48,11 +48,11 @@ export default function Home() {
             onChange={(e) => setQuickPostContent(e.target.value)}
           />
           <Link to={`/new-post/${quickPostContent.trim()}`}>
-            <button className='submit'>{t('home_quick_post_submit')}</button>
+            <button className={styles.submit}>{t('home_quick_post_submit')}</button>
           </Link>
         </div>
       }
-      <div className='feed'>
+      <div className={styles.feed}>
         <InfiniteScroll
           dataLength={posts.length}
           next={fetchPosts}

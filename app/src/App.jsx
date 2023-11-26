@@ -1,4 +1,4 @@
-import './styles/App.scss';
+import styles from './styles/App.module.scss';
 import './utils/services/i18n';
 import ThemeProvider from './components/atoms/ThemeProvider';
 import AuthProvider from './components/atoms/AuthProvider';

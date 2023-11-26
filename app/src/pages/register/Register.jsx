@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import './Register.scss';
+import styles from './Register.module.scss';
 import { useAuth } from 'src/utils/hooks/useAuth';
 
 const schema = yup.object({
@@ -46,57 +46,57 @@ export default function Register() {
   };
   
   return (
-    <div className='register-page'>
-      <div className='register-form'>
-        <div className='column col-left'>
+    <div className={styles.registerPage}>
+      <div className={styles.registerForm}>
+        <div className={`${styles.column} ${styles.colLeft}`}>
           <h1>Postery</h1>
         </div>
-        <div className='column col-right'>
+        <div className={`${styles.column} ${styles.colRight}`}>
           <h2>{t('register_title')}</h2>
-          <p className='register-description'>
+          <p className={styles.registerDescription}>
             {t('register_description')}
           </p>
           <form 
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className='form-block'>
+            <div className={styles.formBlock}>
               <input 
                 type='text'
                 placeholder={t('register_name_placeholder')}
                 className={errors.name && 'error'}
                 {...register('name')}
               />
-              <p className='error-message'>{errors.name?.message}</p>
+              <p className={styles.errorMessage}>{errors.name?.message}</p>
             </div>
-            <div className='form-block'>
+            <div className={styles.formBlock}>
               <input 
                 type='text'
                 placeholder={t('register_display_name_placeholder')}
                 className={errors.displayName && 'error'}
                 {...register('displayName')}
               />
-              <p className='error-message'>{errors.displayName?.message}</p>
+              <p className={styles.errorMessage}>{errors.displayName?.message}</p>
             </div>
-            <div className='form-block'>
+            <div className={styles.formBlock}>
               <input 
                 type='email'
                 placeholder={t('register_email_placeholder')}
                 className={errors.email && 'error'}
                 {...register('email')}
               />
-              <p className='error-message'>{errors.email?.message}</p>
+              <p className={styles.errorMessage}>{errors.email?.message}</p>
             </div>
-            <div className='form-block'>
+            <div className={styles.formBlock}>
               <input 
                 type='password'
                 placeholder={t('register_password_placeholder')}
                 className={errors.password && 'error'}
                 {...register('password')}
               />
-              <p className='error-message'>{errors.password?.message}</p>
+              <p className={styles.errorMessage}>{errors.password?.message}</p>
             </div>
-            <div className='form-block'>
-              <div className='label-block'>
+            <div className={styles.formBlock}>
+              <div className={styles.labelBlock}>
                 <label>{t('register_profile_color')}</label>
                 <input 
                   type='color'
@@ -110,9 +110,9 @@ export default function Register() {
               value={t('register_submit')}
               disabled={signingUp}
             />
-            <p className='error-message'>{apiError}</p>
+            <p className={styles.errorMessage}>{apiError}</p>
           </form>
-          <p className='sign-in'>
+          <p className={styles.signIn}>
             {t('register_sign_in_incentive')} <Link to='/login'>{t('register_sign_in')}</Link>
           </p>
         </div>

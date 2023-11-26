@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import './Login.scss';
+import styles from './Login.module.scss';
 import { useAuth } from 'src/utils/hooks/useAuth';
 
 const schema = yup.object({
@@ -40,45 +40,45 @@ export default function Login() {
   };
 
   return (
-    <div className='login-page'>
-      <div className='login-form'>
-        <div className='column col-left'>
+    <div className={styles.loginPage}>
+      <div className={styles.loginForm}>
+        <div className={`${styles.column} ${styles.colLeft}`}>
           <h1>Postery</h1>
         </div>
-        <div className='column col-right'>
+        <div className={`${styles.column} ${styles.colRight}`}>
           <h2>{t('login_title')}</h2>
-          <p className='login-description'>
+          <p className={styles.loginDescription}>
             {t('login_description')}
           </p>
           <form 
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className='form-block'>
+            <div className={styles.formBlock}>
               <input 
                 type='text'
                 placeholder={t('login_name_or_email_placeholder')}
                 className={errors.nameOrEmail && 'error'}
                 {...register('nameOrEmail')}
               />
-              <p className='error-message'>{errors.nameOrEmail?.message}</p>
+              <p className={styles.errorMessage}>{errors.nameOrEmail?.message}</p>
             </div>
-            <div className='form-block'>
+            <div className={styles.formBlock}>
               <input 
                 type='password'
                 placeholder={t('login_password_placeholder')}
                 className={errors.password && 'error'}
                 {...register('password')}
               />
-              <p className='error-message'>{errors.password?.message}</p>
+              <p className={styles.errorMessage}>{errors.password?.message}</p>
             </div>
             <input 
               type='submit' 
               value={t('login_submit')}
               disabled={loggingIn}
             />
-            <p className='error-message'>{apiError}</p>
+            <p className={styles.errorMessage}>{apiError}</p>
           </form>
-          <p className='sign-up'>
+          <p className={styles.signUp}>
             {t('login_sign_up_incentive')} <Link to='/register'>{t('login_sign_up')}</Link>
           </p>
         </div>

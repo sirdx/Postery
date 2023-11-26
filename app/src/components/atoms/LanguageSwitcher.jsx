@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import './LanguageSwitcher.scss';
+import styles from './LanguageSwitcher.module.scss';
 import { supportedLanguages } from 'src/utils/config/i18n';
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   return (
-    <div className='navbar-language'>
+    <div className={styles.languageSwitcher}>
       <select
         value={i18n.language}
         onChange={(e) => 

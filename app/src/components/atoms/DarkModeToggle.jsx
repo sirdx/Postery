@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TbMoon, TbSun } from 'react-icons/tb';
-import './DarkModeToggle.scss';
+import styles  from './DarkModeToggle.module.scss';
 import ThemeContext from 'src/utils/context/ThemeContext';
 
 export default function DarkModeToggle() {
@@ -16,7 +16,7 @@ export default function DarkModeToggle() {
     <button
       title={t('dark_mode_toggle_title')}
       onClick={toggleTheme}
-      className={`dark-mode-toggle ${theme}`}
+      className={`${styles.darkModeToggle} ${theme}`}
     >
       {theme === 'dark' && <TbSun /> }
       {theme === 'light' && <TbMoon /> }

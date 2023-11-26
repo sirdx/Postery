@@ -1,5 +1,3 @@
-@use 'src/styles/_theme.scss' as *;
-
 .header {
   padding: 15px 40px;
   display: grid;
@@ -8,7 +6,7 @@
   transition: background-color ease-in-out .2s;
 
   @include themify() {
-    background-color: #ffffff;
+    background-color: themed('surface');
   }
 
   .header-brand {
@@ -21,14 +19,17 @@
       user-select: none;
 
       @include themify() {
-        color: #202020;
+        color: themed('on-surface');
       }
     }
   }
 
   .header-search {
     display: flex;
-    background-color: #efefef;
+
+    @include themify() {
+      background-color: themed('background');
+    }
 
     .search-icon {
       width: 20px;
@@ -36,7 +37,7 @@
       margin: 10px 20px;
 
       @include themify() {
-        color: #202020;
+        color: themed('on-background');
       }
     }
     
@@ -45,6 +46,10 @@
       border: 0;
       outline: none;
       background-color: transparent;
+
+      @include themify() {
+        color: themed('on-background');
+      }
     }
   }
 
@@ -56,12 +61,15 @@
 
     .login-button {
       padding: 10px 30px;
-      color: white;
-      background-color: green;
       border: 0;
       font-weight: bold;
       text-align: center;
       cursor: pointer;
+
+      @include themify() {
+        color: themed('on-primary-container');
+        background-color: themed('primary-container');
+      }
     }
 
     .avatar {
@@ -69,7 +77,6 @@
       height: 35px;
       margin-left: 30px;
       border-radius: 20px;
-      background-color: green;
     }
   }
 }

@@ -1,19 +1,21 @@
-@use 'src/styles/_theme.scss' as *;
-
 .post-page {
   .post {
     margin-bottom: 10px;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
+
+    @include themify() {
+      color: themed('on-surface-variant');
+      background-color: themed('surface');
+    }
   
-    h3 {
-      color: #202020;
+    h3, h4 {
+      @include themify() {
+        color: themed('on-surface');
+      }
     }
   
     p {
       margin-top: 5px !important;
-      color: #DFDFDF;
       white-space: pre-line;
     }
   
@@ -28,7 +30,6 @@
         height: 50px;
         margin-right: 15px;
         border-radius: 25px;
-        background-color: green;
       }
   
       .info {
@@ -53,6 +54,10 @@
           svg {
             width: 100%;
             height: 100%;
+
+            @include themify() {
+              color: themed('on-surface');
+            }
           }
         }
       }
@@ -66,7 +71,9 @@
       }
   
       p {
-        color: #606060;
+        @include themify() {
+          color: themed('outline');
+        }
       }
     }
   
@@ -76,7 +83,9 @@
       }
   
       p {
-        color: #A0A0A0;
+        @include themify() {
+          color: themed('on-surface-variant');
+        }
       }
     }
   }

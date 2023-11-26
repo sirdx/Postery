@@ -1,12 +1,12 @@
-@use 'src/styles/_theme.scss' as *;
-
 .new-post-page {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
 
-  background-color: #efefef;
+  @include themify() {
+    background-color: themed('background');
+  }
 
   .new-post-form {
     width: 60%;
@@ -14,7 +14,11 @@
     flex-direction: column;
     margin: 50px;
     padding: 30px;
-    background-color: #ffffff;
+
+    @include themify() {
+      color: themed('on-surface');
+      background-color: themed('surface');
+    }
 
     form {
       height: 100%;

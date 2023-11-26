@@ -1,35 +1,107 @@
-$primary-light: #00ac34;
-$body-background-light: #efefef;
-$on-background-light: #3f3f3f;
-$on-background-2-light: #3f3f3f;
-$container-light: #cccccc;
+$primary-light: #006e25;
+$on-primary-light: #ffffff;
+$primary-container-light: #6fff82;
+$on-primary-container-light: #002106;
+$secondary-light: #5054b1;
+$on-secondary-light: #ffffff;
+$secondary-container-light: #e1e0ff;
+$on-secondary-container-light: #05006d;
+$tertiary-light: #006875;
+$on-tertiary-light: #ffffff;
+$tertiary-container-light: #9defff;
+$on-tertiary-container-light: #001f24;
+$error-light: #ba1a1a;
+$on-error-light: #ffffff;
+$error-container-light: #ffdad6;
+$on-error-container-light: #410002;
+$background-light: #efefef;
+$on-background-light: #1a1c19;
+$surface-light: #ffffff;
+$on-surface-light: #1a1c19;
+$outline-light: #72796f;
+$surface-variant-light: #dee5d9;
+$on-surface-variant-light: #424940;
 
-$primary-dark: #4fef7f;
-$body-background-dark: #3f3f3f;
-$on-background-dark: #EFEFEF;
-$on-background-2-dark: #DFDFDF;
-$container-dark: #333333;
+$primary-dark: #50e169;
+$on-primary-dark: #00390f;
+$primary-container-dark: #00531a;
+$on-primary-container-dark: #6fff82;
+$secondary-dark: #c0c1ff;
+$on-secondary-dark: #202280;
+$secondary-container-dark: #383b97;
+$on-secondary-container-dark: #e1e0ff;
+$tertiary-dark: #12daf3;
+$on-tertiary-dark: #00363d;
+$tertiary-container-dark: #004f59;
+$on-tertiary-container-dark: #9defff;
+$error-dark: #ffb4ab;
+$on-error-dark: #690005;
+$error-container-dark: #93000a;
+$on-error-container-dark: #ffdad6;
+$background-dark: #1a1c19;
+$on-background-dark: #e2e3dd;
+$surface-dark: #232322;
+$on-surface-dark: #e2e3dd;
+$outline-dark: #8c9388;
+$surface-variant-dark: #424940;
+$on-surface-variant-dark: #c2c9bd;
 
 $themes: (
   light: (
     primary: $primary-light,
-    body-background: $body-background-light,
+    on-primary: $on-primary-light,
+    primary-container: $primary-container-light,
+    on-primary-container: $on-primary-container-light,
+    secondary: $secondary-light,
+    on-secondary: $on-secondary-light,
+    secondary-container: $secondary-container-light,
+    on-secondary-container: $on-secondary-container-light,
+    tertiary: $tertiary-light,
+    on-tertiary: $on-tertiary-light,
+    tertiary-container: $tertiary-container-light,
+    on-tertiary-container: $on-tertiary-container-light,
+    error: $error-light,
+    on-error: $on-error-light,
+    error-container: $error-container-light,
+    on-error-container: $on-error-container-light,
+    background: $background-light,
     on-background: $on-background-light,
-    on-background-2: $on-background-2-light,
-    container: $container-light
+    surface: $surface-light,
+    on-surface: $on-surface-light,
+    outline: $outline-light,
+    surface-variant: $surface-variant-light,
+    on-surface-variant: $on-surface-variant-light
   ),
   dark: (
     primary: $primary-dark,
-    body-background: $body-background-dark,
+    on-primary: $on-primary-dark,
+    primary-container: $primary-container-dark,
+    on-primary-container: $on-primary-container-dark,
+    secondary: $secondary-dark,
+    on-secondary: $on-secondary-dark,
+    secondary-container: $secondary-container-dark,
+    on-secondary-container: $on-secondary-container-dark,
+    tertiary: $tertiary-dark,
+    on-tertiary: $on-tertiary-dark,
+    tertiary-container: $tertiary-container-dark,
+    on-tertiary-container: $on-tertiary-container-dark,
+    error: $error-dark,
+    on-error: $on-error-dark,
+    error-container: $error-container-dark,
+    on-error-container: $on-error-container-dark,
+    background: $background-dark,
     on-background: $on-background-dark,
-    on-background-2: $on-background-2-dark,
-    container: $container-dark
+    surface: $surface-dark,
+    on-surface: $on-surface-dark,
+    outline: $outline-dark,
+    surface-variant: $surface-variant-dark,
+    on-surface-variant: $on-surface-variant-dark
   )
 );
 
 @mixin themify() {
   @each $theme, $map in $themes {
-    .theme-#{$theme} & {
+    :global(.theme-#{$theme}) & {
       $theme-map: () !global;
       @each $key, $submap in $map {
         $value: map-get(map-get($themes, $theme), '#{$key}');
