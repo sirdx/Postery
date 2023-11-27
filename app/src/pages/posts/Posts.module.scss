@@ -1,0 +1,7 @@
+.header {
+  margin-bottom: 20px;
+
+  @include themify() {
+    color: themed('on-background');
+  }
+}

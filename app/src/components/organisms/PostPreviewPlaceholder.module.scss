@@ -1,0 +1,56 @@
+.post-preview {
+  margin-bottom: 10px;
+  padding: 20px;
+
+  @include themify() {
+    color: themed('on-surface-variant');
+    background-color: themed('surface');
+  }
+
+  .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 25px;
+
+      @include themify() {
+        background-color: themed('background');
+      }
+    }
+
+    .info {
+      width: 20em;
+      height: 2em;
+      display: flex;
+      flex-direction: column;
+      row-gap: 2px;
+
+      @include themify() {
+        background-color: themed('background');
+      }
+    }
+  }
+
+  .post {
+    margin-bottom: 10px;
+    height: 10em;
+
+    @include themify() {
+      background-color: themed('background');
+    }
+  }
+
+  .stats {
+    height: 2em;
+
+    @include themify() {
+      background-color: themed('background');
+    }
+  }
+}
