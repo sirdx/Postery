@@ -9,7 +9,7 @@ import Login from 'src/pages/login/Login';
 import Logout from 'src/pages/logout/Logout';
 import NewPost from 'src/pages/new-post/NewPost';
 import NotFound from 'src/pages/not-found/NotFound';
-import Post from 'src/pages/post/Post';
+import Post, { postLoader } from 'src/pages/post/Post';
 import Posts from 'src/pages/posts/Posts';
 import Register from 'src/pages/register/Register';
 
@@ -37,7 +37,8 @@ export default function Routes() {
                   element: <Posts />
                 },
                 {
-                  path: '/post/:id',
+                  path: '/post/:slug',
+                  loader: postLoader,
                   element: <Post />
                 }
               ]

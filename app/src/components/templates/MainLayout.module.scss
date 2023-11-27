@@ -77,8 +77,6 @@
     }
   
     &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-
       @include themify() {
         background-color: themed('surface-variant');
       }

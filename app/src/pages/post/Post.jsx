@@ -1,37 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { defer, useLoaderData } from 'react-router-dom';
 import { formatDistance } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { TbLineDashed } from 'react-icons/tb';
 import styles from './Post.module.scss';
 import { getPost } from 'src/api/Post';
 
+export async function postLoader({ params }) {
+  const postResponse = await getPost(params.slug);
+  return defer({ postResponse });
+}
+
 export default function Post() {
   const { t } = useTranslation();
-  const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
+  const { postResponse } = useLoaderData();
   const [error, setError] = useState(null);
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    fetchPost();
-  }, []);
-
-  const fetchPost = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    const response = await getPost(id);
-
-    if (response.errorDetails === null) {
-      setPost(response.data);
+    if (postResponse.errorDetails === null) {
+      setPost(postResponse.data);
     } else {
-      setError(response.errorDetails.message);
+      setError(postResponse.errorDetails.message);
     }
-
-    setIsLoading(false);
-  };
+  }, [postResponse]);
 
   return (
     <div className={styles.postPage}>
