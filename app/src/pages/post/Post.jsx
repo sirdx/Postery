@@ -6,6 +6,7 @@ import { enUS } from 'date-fns/locale';
 import { TbLineDashed } from 'react-icons/tb';
 import styles from './Post.module.scss';
 import { getPost } from 'src/api/Post';
+import Avatar from 'src/components/atoms/Avatar';
 
 export async function postLoader({ params }) {
   const postResponse = await getPost(params.slug);
@@ -32,7 +33,9 @@ export default function Post() {
       <>
         <div className={styles.post}>
           <div className={styles.header}>
-            <div className={styles.avatar} style={{ backgroundColor: `#${post.authorProfileColor}` }}></div>
+            <span className={styles.avatar}>
+              <Avatar color={post.authorProfileColor} />
+            </span>
             <div className={styles.info}>
               <h4>{post.authorDisplayName}</h4>
               <span>{formatDistance(Date.parse(post.createdAt), new Date(), { addSuffix: true, locale: enUS })}</span>

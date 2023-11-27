@@ -76,9 +76,23 @@ class PostController(
     }
 
     @DeleteMapping("/{id}")
-    fun deletePost(@PathVariable id: PostId): ResponseEntity<Unit> =
-        if (postService.deletePost(id))
+    fun deletePost(
+        @PathVariable id: PostId,
+        authentication: Authentication
+    ): ResponseEntity<Unit> {
+        val user = userRepository.findByNameOrEmail(authentication.name, authentication.name).getOrNull() ?:
+            return ResponseEntity.badRequest().build()
+
+        val owner = userRepository.findByPostId(id).getOrNull() ?:
+            return ResponseEntity.badRequest().build()
+
+        if (user.id != owner.id) {
+            return ResponseEntity.badRequest().build()
+        }
+
+        return if (postService.deletePost(id))
             ResponseEntity.noContent().build()
         else
             ResponseEntity.notFound().build()
+    }
 }

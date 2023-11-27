@@ -2,6 +2,7 @@ import { Link, Outlet, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './MainLayout.module.scss';
 import Sidebar from 'src/components/organisms/Sidebar';
+import Avatar from 'src/components/atoms/Avatar';
 
 export default function MainLayout() {
   const { t } = useTranslation();
@@ -12,7 +13,9 @@ export default function MainLayout() {
       <aside className={styles.homeLeft}>
         {userData !== null &&
           <div className={styles.userBadge}>
-            <div className={styles.avatar} style={{ backgroundColor: `#${userData.profileColor}` }}></div>
+            <span className={styles.avatar}>
+              <Avatar color={userData.profileColor} />
+            </span>
             <div className={styles.names}>
               <span className={styles.displayName}>{userData.displayName}</span>
               <span className={styles.username}>{userData.name}</span>

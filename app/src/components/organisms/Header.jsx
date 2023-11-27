@@ -5,6 +5,7 @@ import { TbSearch } from 'react-icons/tb';
 import styles from './Header.module.scss';
 import LanguageSwitcher from '../atoms/LanguageSwitcher';
 import DarkModeToggle from '../atoms/DarkModeToggle';
+import Avatar from '../atoms/Avatar';
 
 export default function Header() {
   const { t } = useTranslation();
@@ -55,7 +56,9 @@ export default function Header() {
             <Link to='/logout'>
               <button>{t('header_logout')}</button>
             </Link>
-            <div className={styles.avatar} style={{ backgroundColor: `#${userData.profileColor}` }}></div>
+            <span className={styles.avatar}>
+              <Avatar color={userData.profileColor} />
+            </span>
           </>
         }
       </div>

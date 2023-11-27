@@ -49,7 +49,24 @@ export async function createPost(title, content) {
     if (error.response.status === 401) {
       return new ApiResponse({
         error: "Unauthorized",
-        message: "Unauthorized to create a post."
+        message: "Unauthorized to create a post"
+      }, null);
+    }
+
+    return new ApiResponse(error.response.data, null);
+  }
+}
+
+export async function deletePost(id) {
+  try {
+    await api.delete(`/posts/${id}`);
+    
+    return new ApiResponse(null, null);
+  } catch (error) {
+    if (error.response.status === 401) {
+      return new ApiResponse({
+        error: "Unauthorized",
+        message: "Unauthorized to delete the post"
       }, null);
     }
 

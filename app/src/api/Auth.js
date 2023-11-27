@@ -12,7 +12,7 @@ export async function login(nameOrEmail, password) {
     if (error.response.status === 401) {
       return new ApiResponse({
         error: "Unauthorized",
-        message: "Invalid credentials."
+        message: "Invalid credentials"
       }, null);
     }
 
