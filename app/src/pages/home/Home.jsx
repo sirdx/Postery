@@ -48,7 +48,7 @@ export default function Home() {
             onChange={(e) => setQuickPostContent(e.target.value)}
           />
           <Link to={`/new-post/${quickPostContent.trim()}`}>
-            <button className={styles.submit}>{t('home_quick_post_submit')}</button>
+            <button>{t('home_quick_post_submit')}</button>
           </Link>
         </div>
       }

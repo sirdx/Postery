@@ -29,9 +29,10 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <span className={styles.headerBrand}>
+      <div className={styles.headerBrand}>
         <Link to='/'>Postery</Link>
-      </span>
+        <DarkModeToggle />
+      </div>
       <div className={styles.headerSearch}>
         <TbSearch className={styles.searchIcon} />
         <input 
@@ -43,21 +44,16 @@ export default function Header() {
         />
       </div>
       <div className={styles.headerOptions}>
-        <DarkModeToggle />
         <LanguageSwitcher />
         {userData === null &&
           <Link to='/login'>
-            <button className={styles.loginButton}>
-              {t('header_login')}
-            </button>
+            <button>{t('header_login')}</button>
           </Link>
         }
         {userData !== null && 
           <>
             <Link to='/logout'>
-              <button className={styles.loginButton}>
-                {t('header_logout')}
-              </button>
+              <button>{t('header_logout')}</button>
             </Link>
             <div className={styles.avatar} style={{ backgroundColor: `#${userData.profileColor}` }}></div>
           </>

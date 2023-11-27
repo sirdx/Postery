@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .main-layout {
   height: 100%;
   padding: 20px 55px;
@@ -59,15 +61,6 @@
     .create-post {
       width: 100%;
       padding: 15px;
-      border: 0;
-      font-weight: bold;
-      text-align: center;
-      cursor: pointer;
-
-      @include themify() {
-        color: themed('on-primary-container');
-        background-color: themed('primary-container');
-      }
     }
   }
 
@@ -93,7 +86,7 @@
   
     &::-webkit-scrollbar-thumb:hover {
       @include themify() {
-        background-color: themed('surface-variant');
+        background-color: color.scale(themed('surface-variant'), $lightness: -10%);
       }
     }
   }

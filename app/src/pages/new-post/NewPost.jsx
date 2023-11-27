@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import styles from './NewPost.module.scss';
 import { createPost } from 'src/api/Post';
+import { TbArrowBack } from 'react-icons/tb';
 
 const schema = yup.object({
   title: yup.string().required().min(8).max(255),
@@ -45,7 +46,8 @@ export default function NewPost() {
   return (
     <div className={styles.newPostPage}>
       <div className={styles.newPostForm}>
-        <div>
+        <div className={styles.header}>
+          <Link to='/'><TbArrowBack /></Link>
           <h1>{t('new_post_header')}</h1>
         </div>
         <form 

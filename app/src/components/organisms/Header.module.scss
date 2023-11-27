@@ -10,7 +10,11 @@
   }
 
   .header-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     align-self: center;
+    column-gap: 10px;
 
     a {
       font-size: x-large;
@@ -40,17 +44,6 @@
         color: themed('on-background');
       }
     }
-    
-    input {
-      width: 100%;
-      border: 0;
-      outline: none;
-      background-color: transparent;
-
-      @include themify() {
-        color: themed('on-background');
-      }
-    }
   }
 
   .header-options {
@@ -58,24 +51,12 @@
     flex-direction: row;
     justify-self: end;
     align-items: center;
-
-    .login-button {
-      padding: 10px 30px;
-      border: 0;
-      font-weight: bold;
-      text-align: center;
-      cursor: pointer;
-
-      @include themify() {
-        color: themed('on-primary-container');
-        background-color: themed('primary-container');
-      }
-    }
+    column-gap: 10px;
 
     .avatar {
       width: 35px;
       height: 35px;
-      margin-left: 30px;
+      margin-left: 20px;
       border-radius: 20px;
     }
   }

@@ -20,6 +20,22 @@
       background-color: themed('surface');
     }
 
+    .header {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      column-gap: 10px;
+
+      a svg {
+        width: 30px;
+        height: 30px;
+
+        @include themify() {
+          color: themed('on-surface');
+        }
+      }
+    }
+
     form {
       height: 100%;
       margin-top: 20px;

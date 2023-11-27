@@ -31,6 +31,31 @@ textarea {
   }
 }
 
+select {
+  appearance: none;
+  padding: 10px 30px 10px 10px;
+  border: 0;
+  outline: none;
+
+  @include themify() {
+    color: themed('on-background');
+    background-color: themed('background');
+  }
+}
+
+button {
+  padding: 10px 30px;
+  border: 0;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+
+  @include themify() {
+    color: themed('on-primary-container');
+    background-color: themed('primary-container');
+  }
+}
+
 input {
   width: 100%;
   padding: 10px;
@@ -49,17 +74,24 @@ input {
   }
 
   &[type='submit'] {
+    padding: 10px 30px;
+    border: 0;
     font-weight: bold;
+    text-align: center;
     cursor: pointer;
-
+  
     @include themify() {
       color: themed('on-primary-container');
       background-color: themed('primary-container');
     }
 
     &[disabled] {
-      background-color: #A0A0A0;
       cursor: not-allowed;
+
+      @include themify() {
+        color: themed('on-surface-variant');
+        background-color: themed('surface-variant');
+      }
     }
   }
 

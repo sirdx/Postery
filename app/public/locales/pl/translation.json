@@ -3,14 +3,14 @@
   "nav_posts": "Posty",
 
   "header_search": "Szukaj postów",
-  "header_login": "Zaloguj Się",
-  "header_logout": "Wyloguj Się",
+  "header_login": "Zaloguj się",
+  "header_logout": "Wyloguj się",
 
   "dark_mode_toggle_title": "Przełącz tryb ciemny",
 
   "post_preview_comments": "Wyświetl {{count}} komentarzy",
 
-  "main_layout_create_post": "Stwórz Post",
+  "main_layout_create_post": "Stwórz post",
   "main_layout_users": "Użytkownicy",
 
   "home_quick_post_placeholder": "Napisz szybki post...",
@@ -20,7 +20,7 @@
   "login_description": "Zaloguj się danymi wprowadzonymi\npodczas rejestracji",
   "login_name_or_email_placeholder": "Nazwa lub email",
   "login_password_placeholder": "Hasło",
-  "login_submit": "Zaloguj Się",
+  "login_submit": "Zaloguj się",
   "login_sign_up_incentive": "Nie masz konta?",
   "login_sign_up": "Zarejestruj się",
 
@@ -38,7 +38,7 @@
   "register_email_placeholder": "Email",
   "register_password_placeholder": "Hasło",
   "register_profile_color": "Kolor profilu:",
-  "register_submit": "Zarejestruj Się",
+  "register_submit": "Zarejestruj się",
   "register_sign_in_incentive": "Masz już konto?",
   "register_sign_in": "Zaloguj się"
 }

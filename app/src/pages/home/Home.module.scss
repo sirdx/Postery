@@ -23,19 +23,6 @@
       border: 0;
       outline: none;
     }
-
-    .submit {
-      padding: 10px 30px;
-      border: 0;
-      font-weight: bold;
-      text-align: center;
-      cursor: pointer;
-
-      @include themify() {
-        color: themed('on-primary-container');
-        background-color: themed('primary-container');
-      }
-    }
   }
 
   .feed {

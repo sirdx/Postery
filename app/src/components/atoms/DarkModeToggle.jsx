@@ -18,8 +18,8 @@ export default function DarkModeToggle() {
       onClick={toggleTheme}
       className={`${styles.darkModeToggle} ${theme}`}
     >
-      {theme === 'dark' && <TbSun /> }
-      {theme === 'light' && <TbMoon /> }
+      {theme === 'light' && <TbSun /> }
+      {theme === 'dark' && <TbMoon /> }
     </button>
   );
 }

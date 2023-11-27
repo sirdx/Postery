@@ -6,19 +6,18 @@ export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   return (
-    <div className={styles.languageSwitcher}>
-      <select
-        value={i18n.language}
-        onChange={(e) => 
-          i18n.changeLanguage(e.target.value)
-        }
-      >
-        {supportedLanguages.map((lang) => (
-          <option key={lang.code} value={lang.code}>
-            {lang.name}
-          </option>
-        ))}
-      </select>
-    </div>
+    <select
+      className={styles.languageSwitcher}
+      value={i18n.language}
+      onChange={(e) => 
+        i18n.changeLanguage(e.target.value)
+      }
+    >
+      {supportedLanguages.map((lang) => (
+        <option key={lang.code} value={lang.code}>
+          {lang.name}
+        </option>
+      ))}
+    </select>
   );
 }
