@@ -69,6 +69,26 @@ export async function createPost(title, content) {
   }
 }
 
+export async function updatePost(id, title, content) {
+  try {
+    const { data } = await api.put(`/posts/${id}`, {
+      title: title,
+      content: content
+    });
+    
+    return new ApiResponse(null, data);
+  } catch (error) {
+    if (error.response.status === 401) {
+      return new ApiResponse({
+        error: "Unauthorized",
+        message: "Unauthorized to update the post"
+      }, null);
+    }
+
+    return new ApiResponse(error.response.data, null);
+  }
+}
+
 export async function deletePost(id) {
   try {
     await api.delete(`/posts/${id}`);

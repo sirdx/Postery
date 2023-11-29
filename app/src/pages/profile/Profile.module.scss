@@ -22,13 +22,15 @@
     .header {
       margin-bottom: 15px;
 
+      h1 {
+        @include themify() {
+          color: themed('on-surface');
+        }
+      }
+
       h3 {
         font-weight: normal;
       }
-    }
-
-    p {
-      align-self: end;
     }
   }
 }

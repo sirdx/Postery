@@ -1,0 +1,62 @@
+.new-post-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  @include themify() {
+    background-color: themed('background');
+  }
+
+  .new-post-form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    padding: 30px;
+
+    @include themify() {
+      color: themed('on-surface');
+      background-color: themed('surface');
+    }
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      column-gap: 10px;
+
+      a svg {
+        width: 30px;
+        height: 30px;
+
+        @include themify() {
+          color: themed('on-surface');
+        }
+      }
+    }
+
+    form {
+      height: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+
+      .content {
+        height: 100%;
+        margin-top: 15px;
+        margin-bottom: 20px;
+      }
+
+      .error-message {
+        color: red;
+        font-size: small;
+        text-align: left;
+      }
+
+      .create {
+        margin-top: 10px;
+      }
+    }
+  }
+}

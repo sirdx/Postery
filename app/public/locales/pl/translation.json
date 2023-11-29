@@ -40,6 +40,11 @@
   "new_post_content_min": "Zawartość musi mieć przynajmniej 8 znaków",
   "new_post_content_max": "Zawartość nie może być dłuższa niż 1000 znaków",
 
+  "edit_post_header": "Edytuj post",
+  "edit_post_title_placeholder": "Tytuł",
+  "edit_post_content_placeholder": "Zawartość",
+  "edit_post_submit": "Zapisz",
+
   "new_comment_header": "Dodaj komentarz",
   "new_comment_content_placeholder": "Komentarz...",
   "new_comment_submit": "Opublikuj",

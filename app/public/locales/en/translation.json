@@ -40,6 +40,11 @@
   "new_post_content_min": "Content must be at least 8 characters",
   "new_post_content_max": "Content must be at most 1000 characters",
 
+  "edit_post_header": "Edit the post",
+  "edit_post_title_placeholder": "Title",
+  "edit_post_content_placeholder": "Content",
+  "edit_post_submit": "Save",
+
   "new_comment_header": "Post a comment",
   "new_comment_content_placeholder": "Comment...",
   "new_comment_submit": "Post",

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './PostPreview.module.scss';
 import { deletePost } from 'src/api/Post';
@@ -7,6 +7,7 @@ import PostHeader from 'src/components/molecules/PostHeader';
 
 export default function PostPreview({ post }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [isDeleted, setIsDeleted] = useState(false);
 
   const postUrl = `/post/${post.slug}`;
@@ -19,11 +20,15 @@ export default function PostPreview({ post }) {
     }
   };
 
+  const handleOnEdit = () => {
+    navigate(`/edit-post/${post.slug}`, { replace: true });
+  };
+
   return (
     <li className={styles.postPreview}>
       {!isDeleted &&
       <> 
-        <PostHeader post={post} onDelete={handleOnDelete} />
+        <PostHeader post={post} onEdit={handleOnEdit} onDelete={handleOnDelete} />
         <div className={styles.post}>
           <Link to={postUrl}><h3>{post.title}</h3></Link>
           <p>{post.content}</p>

@@ -13,6 +13,7 @@ import Post, { postLoader } from 'src/pages/post/Post';
 import Posts from 'src/pages/posts/Posts';
 import Register from 'src/pages/register/Register';
 import Profile, { profileLoader } from 'src/pages/profile/Profile';
+import EditPost from 'src/pages/edit-post/EditPost';
 
 export default function Routes() {
   const { userId } = useAuth();
@@ -60,6 +61,11 @@ export default function Routes() {
                 {
                   path: 'new-post/:content?',
                   element: <NewPost />
+                },
+                {
+                  path: 'edit-post/:slug',
+                  loader: postLoader,
+                  element: <EditPost />
                 }
               ]
             }

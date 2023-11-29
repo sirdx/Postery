@@ -38,6 +38,10 @@ export default function Post() {
     }
   };
 
+  const handleOnEdit = () => {
+    navigate(`/edit-post/${post.slug}`, { replace: true });
+  };
+
   const handleNewComment = () => {
     setFeedKey(!feedKey); // FIXME: it works.
   };
@@ -47,7 +51,7 @@ export default function Post() {
       {post !== null && 
       <>
         <div className={styles.post}>
-          <PostHeader post={post} onDelete={handleOnDelete} />
+          <PostHeader post={post} onEdit={handleOnEdit} onDelete={handleOnDelete} />
           <div className={styles.postContent}>
             <h3>{post.title}</h3>
             <p>{post.content}</p>

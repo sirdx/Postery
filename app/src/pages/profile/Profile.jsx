@@ -40,6 +40,7 @@ export default function Profile() {
             <h3>@{user.name}</h3>
           </div>
           <p>{t('profile_created', { date: createdAt })}</p>
+          {/* <p>Posts: 0 - Comments: 0</p> */}
         </div>
       </div>
       <PostFeed

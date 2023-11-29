@@ -72,13 +72,13 @@ class PostService(
         )
     }
 
-    fun updatePost(id: PostId, post: Post): Post? {
+    fun updatePost(id: PostId, newPostRequest: NewPostRequest): Post? {
         val currentPost = postRepository.findByIdOrNull(id) ?: return null
 
         return postRepository.save(
             currentPost.copy(
-                title = post.title,
-                content = post.content,
+                title = newPostRequest.title,
+                content = newPostRequest.content,
                 modifiedAt = Instant.now()
             )
         )

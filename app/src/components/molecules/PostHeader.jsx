@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { TbLineDashed, TbTrash } from 'react-icons/tb';
+import { TbLineDashed, TbPencil, TbTrash } from 'react-icons/tb';
 import { useTranslation } from 'react-i18next';
-import { formatDistance } from 'date-fns';
-import { enUS } from 'date-fns/locale';
 import styles from './PostHeader.module.scss';
 import Avatar from 'src/components/atoms/Avatar';
 import { useAuth } from 'src/utils/hooks/useAuth';
 
-export default function PostHeader({ post, onDelete }) {
+export default function PostHeader({ post, onEdit, onDelete }) {
   const { t } = useTranslation();
   const options = useRef(null);
   const { userId } = useAuth();
@@ -49,9 +47,14 @@ export default function PostHeader({ post, onDelete }) {
           {optionsOpen &&
             <ul className={styles.menu}>
               {userId === post.authorId &&
-                <li>
-                  <button onClick={onDelete}><TbTrash /> Delete</button>
-                </li>
+                <>
+                  <li>
+                    <button onClick={onEdit}><TbPencil /> Edit</button>
+                  </li>
+                  <li>
+                    <button onClick={onDelete}><TbTrash /> Delete</button>
+                  </li>
+                </>
               }
               <li>
                 {/* Other options */}

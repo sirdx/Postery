@@ -74,16 +74,23 @@ class PostController(
     @PutMapping("/{id}")
     fun updatePost(
         @PathVariable id: PostId,
-        @RequestBody post: Post,
+        @RequestBody newPostRequest: NewPostRequest,
         authentication: Authentication
-    ): ResponseEntity<Post> {
+    ): ResponseEntity<PostResponse> {
         val user = userRepository.findByNameOrEmail(authentication.name, authentication.name).getOrNull() ?:
             return ResponseEntity.badRequest().build()
 
-        val updatedPost = postService.updatePost(id, post) ?:
+        val owner = userRepository.findByPostId(id).getOrNull() ?:
+            return ResponseEntity.badRequest().build()
+
+        if (user.id != owner.id) {
+            return ResponseEntity.badRequest().build()
+        }
+
+        val updatedPost = postService.updatePost(id, newPostRequest) ?:
             return ResponseEntity.notFound().build()
 
-        return ResponseEntity.ok(updatedPost)
+        return ResponseEntity.ok(updatedPost.toResponse())
     }
 
     @DeleteMapping("/{id}")
