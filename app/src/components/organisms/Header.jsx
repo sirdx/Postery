@@ -57,7 +57,7 @@ export default function Header() {
               <button>{t('header_logout')}</button>
             </Link>
             <span className={styles.avatar}>
-              <Avatar color={userData.profileColor} />
+              <Avatar color={userData.profileColor} id={userData.id} />
             </span>
           </>
         }

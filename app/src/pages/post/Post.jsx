@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { defer, useLoaderData, useNavigate } from 'react-router-dom';
 import styles from './Post.module.scss';
@@ -19,14 +19,14 @@ export default function Post() {
   const navigate = useNavigate();
   const { userId } = useAuth();
   const [error, setError] = useState(null);
-  const [post, setPost] = useState(null);
   const [feedKey, setFeedKey] = useState(false);
 
-  useEffect(() => {
+  const post = useMemo(() => {
     if (postResponse.errorDetails === null) {
-      setPost(postResponse.data);
+      return postResponse.data;
     } else {
       setError(postResponse.errorDetails.message);
+      return null;
     }
   }, [postResponse]);
 

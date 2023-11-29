@@ -14,7 +14,7 @@ export default function MainLayout() {
         {userData !== null &&
           <div className={styles.userBadge}>
             <span className={styles.avatar}>
-              <Avatar color={userData.profileColor} />
+              <Avatar color={userData.profileColor} id={userData.id} />
             </span>
             <div className={styles.names}>
               <span className={styles.displayName}>{userData.displayName}</span>

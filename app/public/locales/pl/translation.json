@@ -46,6 +46,8 @@
   "new_comment_content_max": "Zawartość nie może być dłuższa niż 300 znaków",
 
   "posts_search_results": "Wyniki wyszukiwania",
+
+  "profile_created": "Konto utworzone {{date, distance}}",
   
   "register_title": "Zarejestruj się",
   "register_description": "Stwórz nowe konto Postery",

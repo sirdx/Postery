@@ -53,8 +53,8 @@ class SecurityConfig(
                     .requestMatchers("/error").permitAll()
                     .requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/posts").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api/posts/*").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api/comments/*").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
                     .anyRequest().authenticated()
             }
             .sessionManagement { sessionManagement ->

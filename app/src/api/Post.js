@@ -22,6 +22,18 @@ export async function getNewestPosts(page) {
   }
 }
 
+export async function getUserPosts(userId, page) {
+  try {
+    const { data } = await api.get(`/posts/user/${userId}`, {
+      params: { page: page }
+    });
+
+    return new ApiResponse(null, data);
+  } catch (error) {
+    return new ApiResponse(error.response.data, null);
+  }
+}
+
 export async function searchPosts(query, page) {
   try {
     const { data } = await api.get('/posts/search', {

@@ -4,6 +4,7 @@ import com.github.sirdx.postery.dto.request.NewPostRequest
 import com.github.sirdx.postery.model.Post
 import com.github.sirdx.postery.model.PostId
 import com.github.sirdx.postery.model.User
+import com.github.sirdx.postery.model.UserId
 import com.github.sirdx.postery.repository.CommentRepository
 import com.github.sirdx.postery.repository.PostRepository
 import org.springframework.data.domain.PageRequest
@@ -42,6 +43,16 @@ class PostService(
 
         val paging = PageRequest.of(page, size, Sort.by("createdAt").descending())
         val pagePosts = postRepository.findAll(paging)
+        return pagePosts.content
+    }
+
+    fun getUserPosts(userId: UserId, page: Int, size: Int): List<Post> {
+        if (size > 20) { // TODO: Better way to prevent API abuse
+            return listOf()
+        }
+
+        val paging = PageRequest.of(page, size, Sort.by("createdAt").descending())
+        val pagePosts = postRepository.findAllByUserId(userId, paging)
         return pagePosts.content
     }
 

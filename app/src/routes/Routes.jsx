@@ -12,6 +12,7 @@ import NotFound from 'src/pages/not-found/NotFound';
 import Post, { postLoader } from 'src/pages/post/Post';
 import Posts from 'src/pages/posts/Posts';
 import Register from 'src/pages/register/Register';
+import Profile, { profileLoader } from 'src/pages/profile/Profile';
 
 export default function Routes() {
   const { userId } = useAuth();
@@ -40,6 +41,11 @@ export default function Routes() {
                   path: '/post/:slug',
                   loader: postLoader,
                   element: <Post />
+                },
+                {
+                  path: '/profile/:id',
+                  loader: profileLoader,
+                  element: <Profile />
                 }
               ]
             },

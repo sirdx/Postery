@@ -46,6 +46,8 @@
   "new_comment_content_max": "Content must be at most 300 characters",
 
   "posts_search_results": "Search results",
+
+  "profile_created": "Account created {{date, distance}}",
   
   "register_title": "Sign up",
   "register_description": "Create a new Postery account",

@@ -4,6 +4,7 @@ import com.github.sirdx.postery.dto.request.NewPostRequest
 import com.github.sirdx.postery.dto.response.PostResponse
 import com.github.sirdx.postery.model.Post
 import com.github.sirdx.postery.model.PostId
+import com.github.sirdx.postery.model.UserId
 import com.github.sirdx.postery.repository.UserRepository
 import com.github.sirdx.postery.service.PostService
 import jakarta.validation.Valid
@@ -27,6 +28,16 @@ class PostController(
         @RequestParam(defaultValue = "10") size: Int
     ): List<PostResponse> {
         val posts = postService.searchPosts(query, page, size)
+        return posts.map { it.toResponse(postService.getPostCommentsCount(it.id)) }
+    }
+
+    @GetMapping("/user/{id}")
+    fun getUserPosts(
+        @PathVariable id: UserId,
+        @RequestParam(defaultValue = "0") page: Int,
+        @RequestParam(defaultValue = "5") size: Int
+    ): List<PostResponse> {
+        val posts = postService.getUserPosts(id, page, size)
         return posts.map { it.toResponse(postService.getPostCommentsCount(it.id)) }
     }
 

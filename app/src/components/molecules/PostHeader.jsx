@@ -36,7 +36,7 @@ export default function PostHeader({ post, onDelete }) {
       {post.id !== -1 &&
       <>
         <span className={styles.avatar}>
-          <Avatar color={post.authorProfileColor} />
+          <Avatar color={post.authorProfileColor} id={post.authorId} />
         </span>
         <div className={styles.info}>
           <h4>{post.authorDisplayName}</h4>
