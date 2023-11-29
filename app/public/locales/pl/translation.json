@@ -18,6 +18,8 @@
   "home_quick_post_placeholder": "Napisz szybki post...",
   "home_quick_post_submit": "Stwórz",
 
+  "field_required": "To pole jest wymagane",
+
   "login_title": "Zaloguj się",
   "login_description": "Zaloguj się danymi wprowadzonymi\npodczas rejestracji",
   "login_name_or_email_placeholder": "Nazwa lub email",
@@ -25,15 +27,22 @@
   "login_submit": "Zaloguj się",
   "login_sign_up_incentive": "Nie masz konta?",
   "login_sign_up": "Zarejestruj się",
+  "login_name_or_email_min": "Nazwa lub email musi mieć przynajmniej 3 znaki",
+  "login_password_min": "Hasło musi mieć przynajmniej 8 znaki",
 
   "new_post_header": "Stwórz nowy post",
   "new_post_title_placeholder": "Tytuł",
   "new_post_content_placeholder": "Zawartość",
   "new_post_submit": "Stwórz",
+  "new_post_title_min": "Tytuł musi mieć przynajmniej 8 znaków",
+  "new_post_title_max": "Tytuł nie może być dłuższa niż 255 znaków",
+  "new_post_content_min": "Zawartość musi mieć przynajmniej 8 znaków",
+  "new_post_content_max": "Zawartość nie może być dłuższa niż 1000 znaków",
 
   "new_comment_header": "Dodaj komentarz",
   "new_comment_content_placeholder": "Komentarz...",
   "new_comment_submit": "Opublikuj",
+  "new_comment_content_max": "Zawartość nie może być dłuższa niż 300 znaków",
 
   "posts_search_results": "Wyniki wyszukiwania",
   
@@ -47,5 +56,12 @@
   "register_profile_color": "Kolor profilu:",
   "register_submit": "Zarejestruj się",
   "register_sign_in_incentive": "Masz już konto?",
-  "register_sign_in": "Zaloguj się"
+  "register_sign_in": "Zaloguj się",
+  "register_name_min": "Nazwa musi mieć przynajmniej 3 znaki",
+  "register_name_max": "Nazwa nie może być dłuższa niż 16 znaków",
+  "register_display_name_min": "Wyświetlana nazwa musi mieć przynajmniej 3 znaki",
+  "register_display_name_max": "Wyświetlana nazwa nie może być dłuższa niż 30 znaków",
+  "register_email_invalid": "Email jest niepoprawny",
+  "register_password_min": "Hasło musi mieć przynajmniej 8 znaków",
+  "register_confirm_password_match": "Hasła nie są takie same"
 }

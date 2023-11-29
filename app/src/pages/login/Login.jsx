@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
@@ -7,17 +7,23 @@ import * as yup from 'yup';
 import styles from './Login.module.scss';
 import { useAuth } from 'src/utils/hooks/useAuth';
 
-const schema = yup.object({
-  nameOrEmail: yup.string().required().min(3),
-  password: yup.string().required().min(8)
-}).required();
-
 export default function Login() {
   const { t } = useTranslation();
   const { onLogin } = useAuth();
   const navigate = useNavigate();
   const [loggingIn, setLoggingIn] = useState(false);
   const [apiError, setApiError] = useState(null);
+
+  const schema = useMemo(() => 
+    yup.object({
+      nameOrEmail: yup.string()
+        .required(t('field_required'))
+        .min(3, t('login_name_or_email_min')),
+      password: yup.string()
+        .required(t('field_required'))
+        .min(8, t('login_password_min'))
+    }).required(), 
+  []);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)

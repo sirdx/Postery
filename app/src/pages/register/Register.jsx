@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -7,21 +7,36 @@ import * as yup from 'yup';
 import styles from './Register.module.scss';
 import { useAuth } from 'src/utils/hooks/useAuth';
 
-const schema = yup.object({
-  name: yup.string().required().min(3).max(16),
-  displayName: yup.string().required().min(3).max(30),
-  email: yup.string().required().email(),
-  password: yup.string().required().min(8),
-  confirmPassword: yup.string().required().oneOf([yup.ref('password')], 'Passwords must match'),
-  profileColor: yup.string().required().matches('^#[A-Fa-f0-9]{6}$')
-}).required();
-
 export default function Register() {
   const { t } = useTranslation();
   const { onRegister } = useAuth();
   const navigate = useNavigate();
   const [signingUp, setSigningUp] = useState(false);
   const [apiError, setApiError] = useState(null);
+
+  const schema = useMemo(() => yup.object({
+      name: yup.string()
+        .required(t('field_required'))
+        .min(3, t('register_name_min'))
+        .max(16, t('register_name_max')),
+      displayName: yup.string()
+        .required(t('field_required'))
+        .min(3, t('register_display_name_min'))
+        .max(30, t('register_display_name_max')),
+      email: yup.string()
+        .required(t('field_required'))
+        .email(t('register_email_invalid')),
+      password: yup.string()
+        .required(t('field_required'))
+        .min(8, t('register_password_min')),
+      confirmPassword: yup.string()
+        .required(t('field_required'))
+        .oneOf([yup.ref('password')], t('register_confirm_password_match')),
+      profileColor: yup.string()
+        .required(t('field_required'))
+        .matches('^#[A-Fa-f0-9]{6}$')
+    }).required(),
+  []);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)

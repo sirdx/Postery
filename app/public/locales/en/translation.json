@@ -18,6 +18,8 @@
   "home_quick_post_placeholder": "Write a quick post...",
   "home_quick_post_submit": "Post",
 
+  "field_required": "This field is required",
+  
   "login_title": "Sign in",
   "login_description": "Log in with the data that you entered\nduring the registration",
   "login_name_or_email_placeholder": "Name or email",
@@ -25,15 +27,22 @@
   "login_submit": "Sign in",
   "login_sign_up_incentive": "Don't have an account?",
   "login_sign_up": "Sign up",
+  "login_name_or_email_min": "Name or email must be at least 3 characters",
+  "login_password_min": "Password must be at least 8 characters",
 
   "new_post_header": "Create a post",
   "new_post_title_placeholder": "Title",
   "new_post_content_placeholder": "Content",
   "new_post_submit": "Create",
+  "new_post_title_min": "Title must be at least 8 characters",
+  "new_post_title_max": "Title must be at most 255 characters",
+  "new_post_content_min": "Content must be at least 8 characters",
+  "new_post_content_max": "Content must be at most 1000 characters",
 
   "new_comment_header": "Post a comment",
   "new_comment_content_placeholder": "Comment...",
   "new_comment_submit": "Post",
+  "new_comment_content_max": "Content must be at most 300 characters",
 
   "posts_search_results": "Search results",
   
@@ -47,5 +56,12 @@
   "register_profile_color": "Profile color:",
   "register_submit": "Sign up",
   "register_sign_in_incentive": "Already have an account?",
-  "register_sign_in": "Sign in"
+  "register_sign_in": "Sign in",
+  "register_name_min": "Name must be at least 3 characters",
+  "register_name_max": "Name must be at most 16 characters",
+  "register_display_name_min": "Display name must be at least 3 characters",
+  "register_display_name_max": "Display name must be at most 30 characters",
+  "register_email_invalid": "Email is invalid",
+  "register_password_min": "Password must be at least 8 characters",
+  "register_confirm_password_match": "Passwords must match"
 }

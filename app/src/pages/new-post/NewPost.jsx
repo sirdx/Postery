@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
@@ -8,17 +8,24 @@ import styles from './NewPost.module.scss';
 import { createPost } from 'src/api/Post';
 import { TbArrowBack } from 'react-icons/tb';
 
-const schema = yup.object({
-  title: yup.string().required().min(8).max(255),
-  content: yup.string().required().min(8).max(1000)
-}).required();
-
 export default function NewPost() {
   const { t } = useTranslation();
   const { content } = useParams();
   const navigate = useNavigate();
   const [posting, setPosting] = useState(false);
   const [apiError, setApiError] = useState(null);
+
+  const schema = useMemo(() => yup.object({
+      title: yup.string()
+        .required(t('field_required'))
+        .min(8, t('new_post_title_min'))
+        .max(255, t('new_post_title_max')),
+      content: yup.string()
+        .required(t('field_required'))
+        .min(8, t('new_post_content_min'))
+        .max(1000, t('new_post_content_max'))
+    }).required(),
+  []);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
