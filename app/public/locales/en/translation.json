@@ -9,6 +9,8 @@
   "dark_mode_toggle_title": "Toggle dark mode",
 
   "post_preview_comments": "View {{count}} comments",
+  "post_preview_deleted": "Deleted post",
+  "post_preview_deleted_content": "This post was deleted",
 
   "main_layout_create_post": "Create post",
   "main_layout_users": "Users",

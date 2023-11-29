@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { defer, useLoaderData } from 'react-router-dom';
-import { formatDistance } from 'date-fns';
-import { enUS } from 'date-fns/locale';
-import { TbLineDashed } from 'react-icons/tb';
+import { defer, useLoaderData, useNavigate } from 'react-router-dom';
 import styles from './Post.module.scss';
-import { getPost } from 'src/api/Post';
-import Avatar from 'src/components/atoms/Avatar';
+import { getPost, deletePost } from 'src/api/Post';
+import PostHeader from 'src/components/molecules/PostHeader';
 
 export async function postLoader({ params }) {
   const postResponse = await getPost(params.slug);
@@ -16,6 +13,7 @@ export async function postLoader({ params }) {
 export default function Post() {
   const { t } = useTranslation();
   const { postResponse } = useLoaderData();
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [post, setPost] = useState(null);
 
@@ -27,25 +25,20 @@ export default function Post() {
     }
   }, [postResponse]);
 
+  const handleOnDelete = async () => {
+    const response = await deletePost(post.id);
+
+    if (response.errorDetails === null) {
+      navigate('/', { replace: true });
+    }
+  };
+
   return (
     <div className={styles.postPage}>
       {post !== null && 
       <>
         <div className={styles.post}>
-          <div className={styles.header}>
-            <span className={styles.avatar}>
-              <Avatar color={post.authorProfileColor} />
-            </span>
-            <div className={styles.info}>
-              <h4>{post.authorDisplayName}</h4>
-              <span>{formatDistance(Date.parse(post.createdAt), new Date(), { addSuffix: true, locale: enUS })}</span>
-            </div>
-            <div className={styles.options}>
-              <button>
-                <TbLineDashed />
-              </button>
-            </div>
-          </div>
+          <PostHeader post={post} onDelete={handleOnDelete} />
           <div className={styles.postContent}>
             <h3>{post.title}</h3>
             <p>{post.content}</p>
