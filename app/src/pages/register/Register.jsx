@@ -82,7 +82,7 @@ export default function Register() {
                 className={errors.name && 'error'}
                 {...register('name')}
               />
-              <p className={styles.errorMessage}>{errors.name?.message}</p>
+              <p className='error-message'>{errors.name?.message}</p>
             </div>
             <div className={styles.formBlock}>
               <input 
@@ -91,7 +91,7 @@ export default function Register() {
                 className={errors.displayName && 'error'}
                 {...register('displayName')}
               />
-              <p className={styles.errorMessage}>{errors.displayName?.message}</p>
+              <p className='error-message'>{errors.displayName?.message}</p>
             </div>
             <div className={styles.formBlock}>
               <input 
@@ -100,7 +100,7 @@ export default function Register() {
                 className={errors.email && 'error'}
                 {...register('email')}
               />
-              <p className={styles.errorMessage}>{errors.email?.message}</p>
+              <p className='error-message'>{errors.email?.message}</p>
             </div>
             <div className={styles.formBlock}>
               <input 
@@ -109,7 +109,7 @@ export default function Register() {
                 className={errors.password && 'error'}
                 {...register('password')}
               />
-              <p className={styles.errorMessage}>{errors.password?.message}</p>
+              <p className='error-message'>{errors.password?.message}</p>
             </div>
             <div className={styles.formBlock}>
               <input 
@@ -118,7 +118,7 @@ export default function Register() {
                 className={errors.confirmPassword && 'error'}
                 {...register('confirmPassword')}
               />
-              <p className={styles.errorMessage}>{errors.confirmPassword?.message}</p>
+              <p className='error-message'>{errors.confirmPassword?.message}</p>
             </div>
             <div className={styles.formBlock}>
               <div className={styles.labelBlock}>
@@ -135,7 +135,7 @@ export default function Register() {
               value={t('register_submit')}
               disabled={signingUp}
             />
-            <p className={styles.errorMessage}>{apiError}</p>
+            <p className='error-message'>{apiError}</p>
           </form>
           <p className={styles.signIn}>
             {t('register_sign_in_incentive')} <Link to='/login'>{t('register_sign_in')}</Link>

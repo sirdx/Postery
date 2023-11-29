@@ -54,9 +54,9 @@ export default function NewComment({ postId, onNewComment }) {
             className={errors.content && 'error'}
             {...register('content')}
           />
-          <p className={styles.errorMessage}>{errors.content?.message}</p>
+          <p className='error-message'>{errors.content?.message}</p>
         </div>
-        <p className={styles.errorMessage}>{apiError}</p>
+        <p className='error-message'>{apiError}</p>
         <div className={styles.submit}>
           <input 
             type='submit'

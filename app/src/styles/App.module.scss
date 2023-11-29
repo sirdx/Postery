@@ -29,6 +29,13 @@ textarea {
     color: themed('on-background');
     background-color: themed('background');
   }
+
+  &:global(.error) {
+    @include themify() {
+      color: themed('on-error');
+      background-color: themed('error');
+    }
+  }
 }
 
 select {
@@ -40,6 +47,21 @@ select {
   @include themify() {
     color: themed('on-background');
     background-color: themed('background');
+  }
+}
+
+:global(.error-message) {
+  font-size: small;
+
+  @include themify() {
+    color: themed('on-error-container');
+    background-color: themed('error-container');
+  }
+}
+
+:global(.on-background) {
+  @include themify() {
+    color: themed('on-background');
   }
 }
 
@@ -69,8 +91,11 @@ input {
     background-color: themed('background');
   }
 
-  &.error {
-    background-color: #ffaaaa;
+  &:global(.error) {
+    @include themify() {
+      color: themed('on-error');
+      background-color: themed('error');
+    }
   }
 
   &[type='submit'] {

@@ -67,7 +67,7 @@ export default function NewPost() {
               className={errors.title && 'error'}
               {...register('title')}
             />
-            <p className={styles.errorMessage}>{errors.title?.message}</p>
+            <p className='error-message'>{errors.title?.message}</p>
           </div>
           <div className={`${styles.formBlock} ${styles.content}`}>
             <textarea 
@@ -76,9 +76,9 @@ export default function NewPost() {
               className={errors.content && 'error'}
               {...register('content')}
             />
-            <p className={styles.errorMessage}>{errors.content?.message}</p>
+            <p className='error-message'>{errors.content?.message}</p>
           </div>
-          <p className={styles.errorMessage}>{apiError}</p>
+          <p className='error-message'>{apiError}</p>
           <input 
             type='submit'
             className={styles.create}

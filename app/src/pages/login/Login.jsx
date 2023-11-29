@@ -66,7 +66,7 @@ export default function Login() {
                 className={errors.nameOrEmail && 'error'}
                 {...register('nameOrEmail')}
               />
-              <p className={styles.errorMessage}>{errors.nameOrEmail?.message}</p>
+              <p className='error-message'>{errors.nameOrEmail?.message}</p>
             </div>
             <div className={styles.formBlock}>
               <input 
@@ -75,14 +75,14 @@ export default function Login() {
                 className={errors.password && 'error'}
                 {...register('password')}
               />
-              <p className={styles.errorMessage}>{errors.password?.message}</p>
+              <p className='error-message'>{errors.password?.message}</p>
             </div>
             <input 
               type='submit' 
               value={t('login_submit')}
               disabled={loggingIn}
             />
-            <p className={styles.errorMessage}>{apiError}</p>
+            <p className='error-message'>{apiError}</p>
           </form>
           <p className={styles.signUp}>
             {t('login_sign_up_incentive')} <Link to='/register'>{t('login_sign_up')}</Link>

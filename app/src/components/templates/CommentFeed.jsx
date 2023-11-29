@@ -47,7 +47,7 @@ export default function CommentFeed({ postId }) {
           </ul>
         }
         scrollableTarget='main'
-        endMessage={<p>No more data to load.</p>}
+        endMessage={<p className='on-background'>No more data to load.</p>}
       >
         <ul>
           {comments.map(comment => (
@@ -55,7 +55,7 @@ export default function CommentFeed({ postId }) {
           ))}
         </ul>
       </InfiniteScroll>
-      {error && <p>Error: {error.message}</p>}
+      {error && <p className='error-message'>Error: {error.message}</p>}
     </div>
   );
 }

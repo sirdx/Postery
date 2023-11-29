@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Navigate, defer, useLoaderData } from 'react-router-dom';
+import { defer, useLoaderData } from 'react-router-dom';
 import styles from './Profile.module.scss';
 import { getUser } from 'src/api/User';
 import Avatar from 'src/components/atoms/Avatar';
@@ -44,8 +44,8 @@ export default function Profile() {
         </div>
       </div>
       <PostFeed
-        fetchPosts={async (page) => await getUserPosts(user.id, page)} 
-        pageSize={5} 
+        fetchPosts={async (page) => await getUserPosts(user.id, page)}
+        pageSize={5}
       />
     </>
   );
