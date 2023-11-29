@@ -40,7 +40,7 @@ export default function PostHeader({ post, onDelete }) {
         </span>
         <div className={styles.info}>
           <h4>{post.authorDisplayName}</h4>
-          <span>{formatDistance(createdAt, new Date(), { addSuffix: true, locale: enUS })}</span>
+          <span>{t('post_preview_published', { date: createdAt })}</span>
         </div>
         <div className={styles.options} ref={options}>
           <button className={styles.openOptions} onClick={handleOpenOptions}>

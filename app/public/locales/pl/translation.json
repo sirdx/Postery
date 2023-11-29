@@ -8,6 +8,7 @@
 
   "dark_mode_toggle_title": "Przełącz tryb ciemny",
 
+  "post_preview_published": "{{date, distance}}",
   "post_preview_comments": "Wyświetl {{count}} komentarzy",
   "post_preview_deleted": "Usunięty post",
   "post_preview_deleted_content": "Ten post został usunięty.",

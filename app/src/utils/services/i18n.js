@@ -7,6 +7,7 @@ import {
   defaultLanguage,
   supportedLanguages,
 } from 'src/utils/config/i18n';
+import { formatDistance } from 'date-fns';
 
 i18next
   .use(initReactI18next)
@@ -20,6 +21,14 @@ i18next
     fallbackLng: defaultLanguage,
     interpolation: {
       escapeValue: false,
+      format: function(value, format, lng) {
+        if (format === 'distance') {
+          const locale = supportedLanguages.find(val => val.code === lng).dateFns;
+          return formatDistance(value, new Date(), { addSuffix: true, locale: locale })
+        }
+
+        return value;
+      }
     },
     debug: process.env.NODE_ENV === 'development'
   });
