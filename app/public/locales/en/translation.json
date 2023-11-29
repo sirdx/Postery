@@ -39,6 +39,7 @@
   "register_display_name_placeholder": "Display name",
   "register_email_placeholder": "Email",
   "register_password_placeholder": "Password",
+  "register_confirm_password_placeholder": "Confirm password",
   "register_profile_color": "Profile color:",
   "register_submit": "Sign up",
   "register_sign_in_incentive": "Already have an account?",

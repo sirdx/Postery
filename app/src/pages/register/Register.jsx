@@ -12,6 +12,7 @@ const schema = yup.object({
   displayName: yup.string().required().min(3).max(30),
   email: yup.string().required().email(),
   password: yup.string().required().min(8),
+  confirmPassword: yup.string().required().oneOf([yup.ref('password')], 'Passwords must match'),
   profileColor: yup.string().required().matches('^#[A-Fa-f0-9]{6}$')
 }).required();
 
@@ -94,6 +95,15 @@ export default function Register() {
                 {...register('password')}
               />
               <p className={styles.errorMessage}>{errors.password?.message}</p>
+            </div>
+            <div className={styles.formBlock}>
+              <input 
+                type='password'
+                placeholder={t('register_confirm_password_placeholder')}
+                className={errors.confirmPassword && 'error'}
+                {...register('confirmPassword')}
+              />
+              <p className={styles.errorMessage}>{errors.confirmPassword?.message}</p>
             </div>
             <div className={styles.formBlock}>
               <div className={styles.labelBlock}>

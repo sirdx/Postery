@@ -50,11 +50,11 @@ export default function PostHeader({ post, onDelete }) {
             <ul className={styles.menu}>
               {userId === post.authorId &&
                 <li>
-                  <button onClick={onDelete}><TbTrash />Delete</button>
+                  <button onClick={onDelete}><TbTrash /> Delete</button>
                 </li>
               }
               <li>
-                <button><TbTrash />Sample</button>
+                {/* Other options */}
               </li>
             </ul>
           }

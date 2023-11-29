@@ -39,6 +39,7 @@
   "register_display_name_placeholder": "Wyświetlana nazwa",
   "register_email_placeholder": "Email",
   "register_password_placeholder": "Hasło",
+  "register_confirm_password_placeholder": "Powtórz hasło",
   "register_profile_color": "Kolor profilu:",
   "register_submit": "Zarejestruj się",
   "register_sign_in_incentive": "Masz już konto?",

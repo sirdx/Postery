@@ -41,8 +41,14 @@
     }
 
     .menu {
-      position: absolute;
-      list-style-type: none;      
+      width: 150px;
+      position: relative;
+      margin-left: -130px;
+      list-style-type: none; 
+
+      & button {
+        width: 100%;
+      }
     }
   }
 }
