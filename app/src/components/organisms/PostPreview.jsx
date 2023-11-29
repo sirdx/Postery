@@ -31,7 +31,7 @@ export default function PostPreview({ post }) {
         <div className={styles.stats}>
           <Link to={postUrl}>
             <p>
-              {t('post_preview_comments', { count: '296' })}
+              {t('post_preview_comments', { count: post.commentsCount })}
             </p>
           </Link>
         </div>

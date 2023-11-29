@@ -27,7 +27,7 @@ class PostController(
         @RequestParam(defaultValue = "10") size: Int
     ): List<PostResponse> {
         val posts = postService.searchPosts(query, page, size)
-        return posts.map { it.toResponse() }
+        return posts.map { it.toResponse(postService.getPostCommentsCount(it.id)) }
     }
 
     @GetMapping("/newest")
@@ -36,13 +36,13 @@ class PostController(
         @RequestParam(defaultValue = "5") size: Int
     ): List<PostResponse> {
         val posts = postService.getNewestPosts(page, size)
-        return posts.map { it.toResponse() }
+        return posts.map { it.toResponse(postService.getPostCommentsCount(it.id)) }
     }
 
     @GetMapping("/{slug}")
     fun getPost(@PathVariable slug: String): ResponseEntity<PostResponse> {
         val post = postService.getPost(slug) ?: return ResponseEntity.notFound().build()
-        return ResponseEntity.ok(post.toResponse())
+        return ResponseEntity.ok(post.toResponse(postService.getPostCommentsCount(post.id)))
     }
 
     @PostMapping
@@ -56,7 +56,7 @@ class PostController(
         val newPost = postService.createPost(user, newPostRequest)
 
         return ResponseEntity.created(
-            URI.create("/api/posts/" + newPost.slug)
+            URI.create("/api/posts/${newPost.slug}")
         ).body(newPost.toResponse())
     }
 

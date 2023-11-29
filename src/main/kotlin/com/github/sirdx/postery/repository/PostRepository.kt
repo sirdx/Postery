@@ -11,9 +11,8 @@ import java.util.*
 interface PostRepository : JpaRepository<Post, PostId> {
 
     @Query(
-        value = "SELECT * FROM POSTS WHERE LOWER(TITLE) LIKE LOWER(CONCAT('%', ?1,'%')) OR LOWER(CONTENT) LIKE LOWER(CONCAT('%', ?1,'%'))",
-        countQuery = "SELECT COUNT(*) FROM POSTS WHERE LOWER(TITLE) LIKE LOWER(CONCAT('%', ?1,'%')) OR LOWER(CONTENT) LIKE LOWER(CONCAT('%', ?1,'%'))",
-        nativeQuery = true
+        value = "SELECT p FROM Post p WHERE lower(p.title) LIKE lower(concat('%', :query, '%')) OR lower(p.content) LIKE lower(concat('%', :query, '%'))",
+        countQuery = "SELECT count(p) FROM Post p WHERE lower(p.title) LIKE lower(concat('%', :query, '%')) OR lower(p.content) LIKE lower(concat('%', :query, '%'))"
     )
     fun search(query: String, pageable: Pageable): Page<Post>
 

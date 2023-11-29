@@ -1,0 +1,31 @@
+.new-comment {
+  margin-bottom: 10px;
+  padding: 20px;
+
+  @include themify() {
+    color: themed('on-surface-variant');
+    background-color: themed('surface');
+  }
+
+  .header {
+    margin-bottom: 15px;
+
+    h4 {
+      @include themify() {
+        color: themed('on-surface');
+      }
+    }
+  }
+
+  form {
+    .formBlock {
+      margin-bottom: 10px;
+    }
+
+    .submit {
+      input {
+        width: auto;
+      }
+    }
+  }
+}

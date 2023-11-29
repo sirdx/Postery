@@ -31,6 +31,10 @@
   "new_post_content_placeholder": "Zawartość",
   "new_post_submit": "Stwórz",
 
+  "new_comment_header": "Dodaj komentarz",
+  "new_comment_content_placeholder": "Komentarz...",
+  "new_comment_submit": "Opublikuj",
+
   "posts_search_results": "Wyniki wyszukiwania",
   
   "register_title": "Zarejestruj się",

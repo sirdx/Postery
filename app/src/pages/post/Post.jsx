@@ -4,6 +4,9 @@ import { defer, useLoaderData, useNavigate } from 'react-router-dom';
 import styles from './Post.module.scss';
 import { getPost, deletePost } from 'src/api/Post';
 import PostHeader from 'src/components/molecules/PostHeader';
+import CommentFeed from 'src/components/templates/CommentFeed';
+import { useAuth } from 'src/utils/hooks/useAuth';
+import NewComment from 'src/components/organisms/NewComment';
 
 export async function postLoader({ params }) {
   const postResponse = await getPost(params.slug);
@@ -14,8 +17,10 @@ export default function Post() {
   const { t } = useTranslation();
   const { postResponse } = useLoaderData();
   const navigate = useNavigate();
+  const { userId } = useAuth();
   const [error, setError] = useState(null);
   const [post, setPost] = useState(null);
+  const [feedKey, setFeedKey] = useState(false);
 
   useEffect(() => {
     if (postResponse.errorDetails === null) {
@@ -33,6 +38,10 @@ export default function Post() {
     }
   };
 
+  const handleNewComment = () => {
+    setFeedKey(!feedKey); // FIXME: it works.
+  };
+
   return (
     <div className={styles.postPage}>
       {post !== null && 
@@ -47,7 +56,8 @@ export default function Post() {
           </div>
         </div>
         <div className={styles.comments}>
-          <p>Comments...</p>
+          {userId != null && <NewComment postId={post.id} onNewComment={handleNewComment} />}
+          <CommentFeed key={feedKey} postId={post.id} />
         </div>
       </>}
     </div>

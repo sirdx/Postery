@@ -33,15 +33,17 @@ data class User(
     @OneToMany(mappedBy = "author")
     val posts: List<Post> = listOf(),
 
+    @OneToMany(mappedBy = "author")
+    val comments: List<Comment> = listOf(),
+
     val createdAt: Instant = Instant.now()
 ) {
 
-    fun toResponse() =
-        UserResponse(
-            id = id,
-            name = name,
-            displayName = displayName,
-            profileColor = profileColor,
-            createdAt = createdAt
-        )
+    fun toResponse() = UserResponse(
+        id = id,
+        name = name,
+        displayName = displayName,
+        profileColor = profileColor,
+        createdAt = createdAt
+    )
 }

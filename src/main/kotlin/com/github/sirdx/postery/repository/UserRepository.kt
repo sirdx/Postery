@@ -1,5 +1,6 @@
 package com.github.sirdx.postery.repository
 
+import com.github.sirdx.postery.model.CommentId
 import com.github.sirdx.postery.model.PostId
 import com.github.sirdx.postery.model.User
 import com.github.sirdx.postery.model.UserId
@@ -18,4 +19,7 @@ interface UserRepository : JpaRepository<User, UserId> {
 
     @Query("SELECT u FROM User u INNER JOIN u.posts p WHERE p.id = :postId")
     fun findByPostId(@Param("postId") postId: PostId): Optional<User>
+
+    @Query("SELECT u FROM User u INNER JOIN u.comments p WHERE p.id = :commentId")
+    fun findByCommentId(@Param("commentId") commentId: CommentId): Optional<User>
 }

@@ -31,6 +31,10 @@
   "new_post_content_placeholder": "Content",
   "new_post_submit": "Create",
 
+  "new_comment_header": "Post a comment",
+  "new_comment_content_placeholder": "Comment...",
+  "new_comment_submit": "Post",
+
   "posts_search_results": "Search results",
   
   "register_title": "Sign up",

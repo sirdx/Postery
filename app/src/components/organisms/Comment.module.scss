@@ -1,0 +1,39 @@
+.comment {
+  margin-bottom: 10px;
+  padding: 20px;
+
+  @include themify() {
+    color: themed('on-surface-variant');
+    background-color: themed('surface');
+  }
+
+  h3, h4 {
+    @include themify() {
+      color: themed('on-surface');
+    }
+  }
+
+  p {
+    display: -webkit-box;
+    margin-top: 5px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+  }
+
+  .content {
+    margin-bottom: 10px;
+
+    a {
+      text-decoration: none;
+    }
+
+    p {
+      @include themify() {
+        color: themed('outline');
+      }
+    }
+  }
+}

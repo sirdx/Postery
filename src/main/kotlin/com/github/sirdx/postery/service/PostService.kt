@@ -4,6 +4,7 @@ import com.github.sirdx.postery.dto.request.NewPostRequest
 import com.github.sirdx.postery.model.Post
 import com.github.sirdx.postery.model.PostId
 import com.github.sirdx.postery.model.User
+import com.github.sirdx.postery.repository.CommentRepository
 import com.github.sirdx.postery.repository.PostRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
@@ -14,18 +15,22 @@ import kotlin.jvm.optionals.getOrNull
 
 @Service
 class PostService(
-    private val postRepository: PostRepository
+    private val postRepository: PostRepository,
+    private val commentRepository: CommentRepository
 ) {
 
     fun getPost(slug: String) =
         postRepository.findBySlug(slug).getOrNull()
+
+    fun getPostCommentsCount(id: PostId) =
+        commentRepository.countAllByPostId(id)
 
     fun searchPosts(query: String, page: Int, size: Int): List<Post> {
         if (size > 20) { // TODO: Better way to prevent API abuse
             return listOf()
         }
 
-        val paging = PageRequest.of(page, size, Sort.by("created_at").descending())
+        val paging = PageRequest.of(page, size, Sort.by("createdAt").descending())
         val pagePosts = postRepository.search(query, paging)
         return pagePosts.content
     }
