@@ -57,6 +57,10 @@ export default function EditPost() {
     if (response.errorDetails === null) {
       navigate(`/post/${response.data.slug}`, { replace: true });
     } else {
+      if (response.errorDetails.error == 'Unauthorized') {
+        navigate('/login');
+      }
+
       setApiError(response.errorDetails.message);
     }
   };

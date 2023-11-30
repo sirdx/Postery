@@ -35,6 +35,10 @@ export default function NewComment({ postId, onNewComment }) {
       reset();
       onNewComment(response.data);
     } else {
+      if (response.errorDetails.error == 'Unauthorized') {
+        navigate('/login');
+      }
+
       setApiError(response.errorDetails.message);
     }
   };
