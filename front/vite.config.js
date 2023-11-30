@@ -12,7 +12,13 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': 'http://localhost:8080'
-    }
+    },
+    watch: {
+      usePolling: true
+    },
+    host: true,
+    strictPort: true,
+    port: 5173
   },
   css: {
     modules: {
