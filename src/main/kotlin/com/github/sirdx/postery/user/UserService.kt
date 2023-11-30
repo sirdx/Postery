@@ -1,6 +1,8 @@
 package com.github.sirdx.postery.user
 
+import com.github.sirdx.postery.user.response.UserResponse
+
 interface UserService {
 
-    fun findUser(id: UserId): User?
+    fun getUserById(id: UserId): UserResponse?
 }

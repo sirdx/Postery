@@ -29,7 +29,7 @@ class AuthController(
         val registeredUser = authService.register(registerRequest, request, response) ?:
             return ResponseEntity.badRequest().body(ErrorDetails("Registration Error", "User already exists"))
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser.toResponse())
+        return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser)
     }
 
     @PostMapping("/login")
@@ -41,6 +41,6 @@ class AuthController(
         val user = authService.login(authenticationRequest, request, response) ?:
             return ResponseEntity.internalServerError().build()
 
-        return ResponseEntity.ok().body(user.toResponse())
+        return ResponseEntity.ok().body(user)
     }
 }

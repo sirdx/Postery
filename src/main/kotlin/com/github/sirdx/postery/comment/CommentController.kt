@@ -1,21 +1,20 @@
 package com.github.sirdx.postery.comment
 
+import com.github.sirdx.postery.auth.AuthService
 import com.github.sirdx.postery.comment.request.NewCommentRequest
 import com.github.sirdx.postery.comment.response.CommentResponse
 import com.github.sirdx.postery.post.PostId
-import com.github.sirdx.postery.user.UserRepository
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import java.net.URI
-import kotlin.jvm.optionals.getOrNull
 
 @RestController
 @RequestMapping("/api/comments")
 class CommentController(
     private val commentService: CommentService,
-    private val userRepository: UserRepository
+    private val authService: AuthService
 ) {
 
     @GetMapping("/{postId}")
@@ -23,10 +22,7 @@ class CommentController(
         @PathVariable postId: PostId,
         @RequestParam(defaultValue = "0") page: Int,
         @RequestParam(defaultValue = "10") size: Int
-    ): List<CommentResponse> {
-        val comments = commentService.getComments(postId, page, size)
-        return comments.map { it.toResponse() }
-    }
+    ) = commentService.getComments(postId, page, size)
 
     @PostMapping("/{postId}")
     fun createComment(
@@ -34,15 +30,12 @@ class CommentController(
         @RequestBody @Valid newCommentRequest: NewCommentRequest,
         authentication: Authentication
     ): ResponseEntity<CommentResponse> {
-        val user = userRepository.findByNameOrEmail(authentication.name, authentication.name).getOrNull() ?:
-            return ResponseEntity.badRequest().build()
-
-        val newComment = commentService.createComment(user, postId, newCommentRequest) ?:
-            return ResponseEntity.badRequest().build()
+        val user = authService.getUserByAuthentication(authentication)
+        val newComment = commentService.createComment(user, postId, newCommentRequest)
 
         return ResponseEntity.created(
             URI.create("/api/comments/$postId")
-        ).body(newComment.toResponse())
+        ).body(newComment)
     }
 
     @DeleteMapping("/{id}")
@@ -50,19 +43,8 @@ class CommentController(
         @PathVariable id: CommentId,
         authentication: Authentication
     ): ResponseEntity<Unit> {
-        val user = userRepository.findByNameOrEmail(authentication.name, authentication.name).getOrNull() ?:
-            return ResponseEntity.badRequest().build()
-
-        val owner = userRepository.findByCommentId(id).getOrNull() ?:
-            return ResponseEntity.badRequest().build()
-
-        if (user.id != owner.id) {
-            return ResponseEntity.badRequest().build()
-        }
-
-        return if (commentService.deleteComment(id))
-            ResponseEntity.noContent().build()
-        else
-            ResponseEntity.notFound().build()
+        val user = authService.getUserByAuthentication(authentication)
+        commentService.deleteComment(id, user)
+        return ResponseEntity.noContent().build()
     }
 }

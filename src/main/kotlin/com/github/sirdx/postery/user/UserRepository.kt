@@ -11,10 +11,6 @@ interface UserRepository : JpaRepository<User, UserId> {
 
     fun findByNameOrEmail(name: String, email: String): Optional<User>
 
-    fun findByEmail(email: String): Optional<User>
-
-    fun findByName(name: String): Optional<User>
-
     @Query("SELECT u FROM User u INNER JOIN u.posts p WHERE p.id = :postId")
     fun findByPostId(@Param("postId") postId: PostId): Optional<User>
 

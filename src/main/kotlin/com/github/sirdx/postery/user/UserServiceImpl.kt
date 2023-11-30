@@ -8,6 +8,6 @@ class UserServiceImpl(
     private val userRepository: UserRepository
 ) : UserService {
 
-    override fun findUser(id: UserId) =
-        userRepository.findByIdOrNull(id)
+    override fun getUserById(id: UserId) =
+        userRepository.findByIdOrNull(id)?.toResponse()
 }

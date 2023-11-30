@@ -4,10 +4,12 @@ import com.github.sirdx.postery.auth.request.AuthenticationRequest
 import com.github.sirdx.postery.auth.request.RegisterRequest
 import com.github.sirdx.postery.user.User
 import com.github.sirdx.postery.user.UserRepository
+import com.github.sirdx.postery.user.response.UserResponse
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.context.SecurityContextHolderStrategy
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -24,11 +26,14 @@ class AuthServiceImpl(
     private val authenticationManager: AuthenticationManager
 ) : AuthService {
 
+    override fun getUserByAuthentication(authentication: Authentication) =
+        userRepository.findByNameOrEmail(authentication.name, authentication.name).get()
+
     override fun register(
         registerRequest: RegisterRequest,
         request: HttpServletRequest,
         response: HttpServletResponse
-    ): User? {
+    ): UserResponse? {
         val email = registerRequest.email.trim()
         val displayName = registerRequest.displayName.trim()
         val name = registerRequest.name.trim()
@@ -60,14 +65,14 @@ class AuthServiceImpl(
         securityContextHolderStrategy.context = context
         securityContextRepository.saveContext(context, request, response)
 
-        return savedUser
+        return savedUser.toResponse()
     }
 
     override fun login(
         authenticationRequest: AuthenticationRequest,
         request: HttpServletRequest,
         response: HttpServletResponse
-    ): User? {
+    ): UserResponse? {
         val nameOrEmail = authenticationRequest.nameOrEmail
         val password = authenticationRequest.password
 
@@ -81,6 +86,6 @@ class AuthServiceImpl(
         securityContextRepository.saveContext(context, request, response)
 
         val user = userRepository.findByNameOrEmail(nameOrEmail, nameOrEmail)
-        return user.getOrNull()
+        return user.getOrNull()?.toResponse()
     }
 }
