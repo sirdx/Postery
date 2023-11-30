@@ -27,12 +27,12 @@ export default function EditPost() {
   const schema = useMemo(() => yup.object({
       title: yup.string()
         .required(t('field_required'))
-        .min(8, t('new_post_title_min'))
-        .max(255, t('new_post_title_max')),
+        .min(8, t('edit_post_title_min'))
+        .max(255, t('edit_post_title_max')),
       content: yup.string()
         .required(t('field_required'))
-        .min(8, t('new_post_content_min'))
-        .max(1000, t('new_post_content_max'))
+        .min(8, t('edit_post_content_min'))
+        .max(1000, t('edit_post_content_max'))
     }).required(),
   []);
 

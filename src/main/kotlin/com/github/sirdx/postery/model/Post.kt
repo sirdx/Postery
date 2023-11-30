@@ -43,6 +43,7 @@ data class Post(
         title = title,
         content = content,
         createdAt = createdAt,
+        modifiedAt = modifiedAt ?: createdAt,
         slug = slug
     )
 }

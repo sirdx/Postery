@@ -32,7 +32,7 @@
 
     p {
       @include themify() {
-        color: themed('outline');
+        color: themed('on-background');
       }
     }
   }

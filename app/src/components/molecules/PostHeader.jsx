@@ -48,12 +48,16 @@ export default function PostHeader({ post, onEdit, onDelete }) {
             <ul className={styles.menu}>
               {userId === post.authorId &&
                 <>
-                  <li>
-                    <button onClick={onEdit}><TbPencil /> Edit</button>
-                  </li>
-                  <li>
-                    <button onClick={onDelete}><TbTrash /> Delete</button>
-                  </li>
+                  {onEdit && 
+                    <li>
+                      <button onClick={onEdit}><TbPencil /> Edit</button>
+                    </li>
+                  }
+                  {onDelete &&
+                    <li>
+                      <button onClick={onDelete}><TbTrash /> Delete</button>
+                    </li>
+                  }
                 </>
               }
               <li>

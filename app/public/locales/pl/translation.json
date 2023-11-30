@@ -44,11 +44,17 @@
   "edit_post_title_placeholder": "Tytuł",
   "edit_post_content_placeholder": "Zawartość",
   "edit_post_submit": "Zapisz",
+  "edit_post_title_min": "Tytuł musi mieć przynajmniej 8 znaków",
+  "edit_post_title_max": "Tytuł nie może być dłuższa niż 255 znaków",
+  "edit_post_content_min": "Zawartość musi mieć przynajmniej 8 znaków",
+  "edit_post_content_max": "Zawartość nie może być dłuższa niż 1000 znaków",
 
   "new_comment_header": "Dodaj komentarz",
   "new_comment_content_placeholder": "Komentarz...",
   "new_comment_submit": "Opublikuj",
   "new_comment_content_max": "Zawartość nie może być dłuższa niż 300 znaków",
+
+  "post_last_modification": "Ostatnio zmodyfikowano {{date, distance}}",
 
   "posts_search_results": "Wyniki wyszukiwania",
 

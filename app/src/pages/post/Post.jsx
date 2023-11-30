@@ -30,6 +30,8 @@ export default function Post() {
     }
   }, [postResponse]);
 
+  const modifiedAt = new Date(post.modifiedAt);
+
   const handleOnDelete = async () => {
     const response = await deletePost(post.id);
 
@@ -57,6 +59,7 @@ export default function Post() {
             <p>{post.content}</p>
           </div>
           <div className={styles.stats}>
+            <p>{t('post_last_modification', { date: modifiedAt })}</p>
           </div>
         </div>
         <div className={styles.comments}>

@@ -44,11 +44,17 @@
   "edit_post_title_placeholder": "Title",
   "edit_post_content_placeholder": "Content",
   "edit_post_submit": "Save",
+  "edit_post_title_min": "Title must be at least 8 characters",
+  "edit_post_title_max": "Title must be at most 255 characters",
+  "edit_post_content_min": "Content must be at least 8 characters",
+  "edit_post_content_max": "Content must be at most 1000 characters",
 
   "new_comment_header": "Post a comment",
   "new_comment_content_placeholder": "Comment...",
   "new_comment_submit": "Post",
   "new_comment_content_max": "Content must be at most 300 characters",
+
+  "post_last_modification": "Last modified {{date, distance}}",
 
   "posts_search_results": "Search results",
 

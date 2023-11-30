@@ -14,5 +14,6 @@ data class PostResponse(
     val title: String,
     val content: String,
     val createdAt: Instant,
+    val modifiedAt: Instant,
     val slug: String
 )

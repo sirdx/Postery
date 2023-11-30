@@ -28,7 +28,7 @@
   
       p {
         @include themify() {
-          color: themed('outline');
+          color: themed('on-background');
         }
       }
     }
@@ -40,7 +40,7 @@
   
       p {
         @include themify() {
-          color: themed('on-surface-variant');
+          color: themed('outline');
         }
       }
     }
