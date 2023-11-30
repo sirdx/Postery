@@ -1,7 +1,7 @@
 package com.github.sirdx.postery.config
 
 import com.github.sirdx.postery.security.AuthenticationEntryPoint
-import com.github.sirdx.postery.security.CustomUserDetailsService
+import com.github.sirdx.postery.security.CustomUserDetailsServiceImpl
 import com.github.sirdx.postery.security.CustomUsernamePasswordAuthenticationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -25,12 +25,12 @@ import org.springframework.security.web.session.HttpSessionEventPublisher
 @EnableMethodSecurity
 class SecurityConfig(
     private val authenticationEntryPoint: AuthenticationEntryPoint,
-    private val customUserDetailsService: CustomUserDetailsService
+    private val customUserDetailsServiceImpl: CustomUserDetailsServiceImpl
 ) {
 
     @Bean
     fun authenticationProvider() = DaoAuthenticationProvider().apply {
-        setUserDetailsService(customUserDetailsService)
+        setUserDetailsService(customUserDetailsServiceImpl)
         setPasswordEncoder(passwordEncoder())
     }
 
